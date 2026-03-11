@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-Frame-Options" content="DENY">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<title>فشل الدفع | Souq-Kom</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--blue:#2355D4;--red:#DC2626;--text:#18202E;--muted:#6B7A99;--bg:#F4F6FA;--card:#fff;--bdr:#E2E8F4;--orange:#EA580C}
+body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+.wrap{max-width:480px;width:100%;text-align:center}
+.circle{width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,#DC2626,#EF4444);margin:0 auto 22px;display:flex;align-items:center;justify-content:center;font-size:2.2rem;animation:shake .5s ease .3s both;box-shadow:0 8px 32px rgba(220,38,38,.25)}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}
+.card{background:var(--card);border:1.5px solid rgba(220,38,38,.15);border-radius:20px;padding:36px;box-shadow:0 8px 40px rgba(0,0,0,.1)}
+.tag{display:inline-flex;align-items:center;gap:6px;padding:4px 14px;background:rgba(220,38,38,.08);color:var(--red);border:1px solid rgba(220,38,38,.2);border-radius:20px;font-size:.78rem;font-weight:800;margin-bottom:14px}
+h1{font-size:1.4rem;font-weight:900;margin-bottom:8px}
+.sub{font-size:.86rem;color:var(--muted);margin-bottom:22px;line-height:1.65}
+.reasons{background:rgba(234,88,12,.04);border:1.5px solid rgba(234,88,12,.12);border-radius:12px;padding:16px;margin-bottom:22px;text-align:right}
+.reasons h3{font-size:.8rem;font-weight:800;color:var(--orange);margin-bottom:10px}
+.reason-item{display:flex;align-items:flex-start;gap:8px;margin-bottom:7px;font-size:.78rem;color:var(--muted)}
+.reason-item:last-child{margin:0}
+.reason-item::before{content:'•';color:var(--orange);font-weight:900;flex-shrink:0}
+.info-box{background:var(--bg);border:1px solid var(--bdr);border-radius:11px;padding:13px;margin-bottom:20px;font-size:.82rem;display:flex;justify-content:space-between;align-items:center}
+.actions{display:flex;flex-direction:column;gap:10px}
+.btn-retry{padding:13px;background:linear-gradient(135deg,var(--blue),#0891B2);color:#fff;border-radius:12px;font-weight:800;font-size:.92rem;cursor:pointer;border:none;width:100%;transition:.2s}
+.btn-retry:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(35,85,212,.3)}
+.btn-cash{padding:12px;background:linear-gradient(135deg,#059669,#10B981);color:#fff;border-radius:12px;font-weight:700;font-size:.88rem;cursor:pointer;border:none;width:100%}
+.btn-home{padding:11px;background:none;border:1.5px solid var(--bdr);color:var(--muted);border-radius:11px;font-weight:600;font-size:.85rem;cursor:pointer;width:100%}
+.help{font-size:.72rem;color:var(--muted);margin-top:16px;line-height:1.7}
+.help a{color:var(--blue)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="circle">✕</div>
+  <div class="card">
+    <div class="tag">✕ فشل الدفع</div>
+    <h1>لم تتم عملية الدفع</h1>
+    <p class="sub">
+      لا تقلق — لم يتم خصم أي مبلغ من حسابك.<br>
+      طلبك لا يزال محفوظاً ويمكنك المحاولة مرة أخرى.
+    </p>
+
+    <div class="reasons">
+      <h3>⚠️ الأسباب الشائعة لفشل الدفع:</h3>
+      <div class="reason-item">رصيد البطاقة غير كافٍ</div>
+      <div class="reason-item">بيانات البطاقة غير صحيحة (الرقم، تاريخ الانتهاء، CVV)</div>
+      <div class="reason-item">البطاقة غير مفعّلة للمدفوعات الإلكترونية — تواصل مع بنكك</div>
+      <div class="reason-item">انقطاع مؤقت في الاتصال — حاول مرة أخرى</div>
+      <div class="reason-item">تجاوز الحد اليومي للبطاقة</div>
+    </div>
+
+    <div class="info-box">
+      <span style="color:var(--muted)">رقم الطلب</span>
+      <span id="orderId" style="font-family:monospace;font-weight:700;direction:ltr">—</span>
+    </div>
+
+    <div class="actions">
+      <button class="btn-retry" onclick="retryPayment()">🔄 المحاولة مرة أخرى</button>
+      <button class="btn-cash"  onclick="switchToCash()">💵 الدفع عند الاستلام بدلاً</button>
+      <button class="btn-home"  onclick="location.href='index.html'">← العودة للموقع</button>
+    </div>
+
+    <p class="help">
+      إذا استمرت المشكلة: <a href="/cdn-cgi/l/email-protection#fd8e888d8d928f89bd8e92888cd0969290d3909c"><span class="__cf_email__" data-cfemail="e794929797889593a794889296ca8c888ac98a86">[email&#160;protected]</span></a><br>
+      أو واتساب: <a href="https://wa.me/212XXXXXXXXX /* ← ضع رقمك هنا */">+212 6 00 00 00 00</a>
+    </p>
+  </div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+var params = new URLSearchParams(location.search);
+var orderId = params.get('order') || '—';
+document.getElementById('orderId').textContent = esc(orderId.slice(0,20));
+
+function retryPayment() {
+  // حفظ رقم الطلب للمحاولة التالية
+  if (orderId && orderId !== '—') {
+    sessionStorage.setItem('retry_order', orderId);
+  }
+  location.href = 'index.html?retry=1';
+}
+
+function switchToCash() {
+  // تحديث طريقة الدفع إلى "عند الاستلام"
+  var SU = 'https://hkwwosjwnbdubwqkuxxm.supabase.co';
+  var SK = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhrd3dvc2p3bmJkdWJ3cWt1eHhtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI3NDQ2NzUsImV4cCI6MjA4ODMyMDY3NX0.kxlVFPGTILmzS5MPYxxmAcnuR1H1vNWf0xYAFNOxUDE';
+  if (orderId && orderId !== '—') {
+    fetch(SU + '/rest/v1/orders?id=eq.' + encodeURIComponent(orderId), {
+      method: 'PATCH',
+      headers: {
+        'apikey': SK,
+        'Authorization': 'Bearer ' + SK,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({ payment_method: 'cash', status: 'pending' })
+    

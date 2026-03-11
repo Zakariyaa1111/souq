@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-Frame-Options" content="DENY">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<title>قواعد نشر المنتجات | Souq-Kom</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--blue:#2355D4;--text:#18202E;--muted:#6B7A99;--bdr:#E2E8F4;--bg:#F4F6FA;--card:#fff;--green:#059669;--red:#DC2626;--gold:#D97706;--purple:#7C3AED}
+body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+.topbar{background:var(--card);border-bottom:1px solid var(--bdr);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.brand{font-weight:900;color:var(--blue);font-size:1.1rem;cursor:pointer}
+.nav{display:flex;gap:14px}.nav a{font-size:.8rem;color:var(--muted);font-weight:600;text-decoration:none}.nav a:hover{color:var(--blue)}
+.header{background:linear-gradient(135deg,#3B0764,#7C3AED 55%,#0891B2);padding:44px 20px;text-align:center;color:#fff;position:relative;overflow:hidden}
+.header::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.05) 1px,transparent 1px);background-size:22px 22px}
+.header h1{font-size:1.8rem;font-weight:900;margin-bottom:7px;position:relative}
+.header p{font-size:.9rem;opacity:.8;position:relative}
+.container{max-width:900px;margin:0 auto;padding:30px 20px}
+.card{background:var(--card);border:1.5px solid var(--bdr);border-radius:16px;padding:26px;margin-bottom:18px}
+h2{font-size:1rem;font-weight:900;color:var(--purple);margin-bottom:13px;padding-bottom:8px;border-bottom:2px solid rgba(124,58,237,.1);display:flex;align-items:center;gap:8px}
+h3{font-size:.88rem;font-weight:800;color:var(--text);margin:13px 0 7px}
+p,li{font-size:.83rem;color:var(--muted);margin-bottom:6px;line-height:1.75}
+ul,ol{padding-right:20px;margin-bottom:10px}li{margin-bottom:5px}
+.rule-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.rule-box{border:1.5px solid var(--bdr);border-radius:12px;padding:14px;background:var(--bg)}
+.rule-box.ok{border-color:rgba(5,150,105,.25);background:rgba(5,150,105,.04)}
+.rule-box.no{border-color:rgba(220,38,38,.2);background:rgba(220,38,38,.03)}
+.rule-box h4{font-size:.78rem;font-weight:800;margin-bottom:7px}
+.rule-box.ok h4{color:var(--green)}
+.rule-box.no h4{color:var(--red)}
+.rule-box li{font-size:.76rem;color:var(--muted)}
+.ex-badge{display:inline-block;padding:2px 9px;border-radius:7px;font-size:.7rem;font-weight:700}
+.ex-ok{background:rgba(5,150,105,.1);color:var(--green);border:1px solid rgba(5,150,105,.2)}
+.ex-no{background:rgba(220,38,38,.08);color:var(--red);border:1px solid rgba(220,38,38,.15)}
+.ex-warn{background:rgba(217,119,6,.1);color:var(--gold);border:1px solid rgba(217,119,6,.2)}
+table{width:100%;border-collapse:collapse;font-size:.8rem;margin:12px 0}
+th{background:rgba(124,58,237,.05);color:var(--text);font-weight:800;padding:8px 12px;text-align:right;border:1px solid var(--bdr)}
+td{padding:7px 12px;border:1px solid var(--bdr);color:var(--muted)}
+.warn-box{background:rgba(220,38,38,.04);border:1.5px solid rgba(220,38,38,.14);border-radius:11px;padding:12px 15px;margin:10px 0;font-size:.81rem;color:var(--red)}
+.info-box{background:rgba(35,85,212,.04);border:1.5px solid rgba(35,85,212,.12);border-radius:11px;padding:12px 15px;margin:10px 0;font-size:.81rem;color:var(--blue)}
+.step-list{counter-reset:step;margin:10px 0}
+.step-item{display:flex;gap:12px;margin-bottom:12px;align-items:flex-start}
+.step-num{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--purple),#0891B2);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.75rem;flex-shrink:0;margin-top:1px}
+.step-info strong{display:block;font-size:.82rem;color:var(--text);margin-bottom:2px}
+.step-info span{font-size:.76rem;color:var(--muted)}
+.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:12px 0}
+.cat-item{background:var(--bg);border:1.5px solid var(--bdr);border-radius:10px;padding:11px;text-align:center}
+.cat-ico{font-size:1.3rem;margin-bottom:4px}
+.cat-lbl{font-size:.72rem;font-weight:700;color:var(--text)}
+.cat-sub{font-size:.65rem;color:var(--muted);margin-top:2px}
+.footer-note{font-size:.74rem;color:var(--muted);text-align:center;padding:20px;border-top:1px solid var(--bdr);margin-top:20px;line-height:1.8}
+.footer-note a{color:var(--blue)}
+@media(max-width:600px){.rule-grid{grid-template-columns:1fr}.cat-grid{grid-template-columns:1fr 1fr}.header h1{font-size:1.4rem}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="brand" onclick="location.href='index.html'">Souq-Kom</div>
+  <div class="nav">
+    <a href="index.html">المتجر</a>
+    <a href="seller-policy.html">سياسة البائعين</a>
+    <a href="terms.html">الشروط</a>
+    <a href="seller.html">لوحتي</a>
+  </div>
+</div>
+<div class="header">
+  <h1>📋 قواعد نشر المنتجات</h1>
+  <p>كل ما تحتاج معرفته لنشر منتج صحيح ومقبول في أول مراجعة</p>
+</div>
+<div class="container">
+
+  <div class="card">
+    <h2>1. 📸 قواعد الصور</h2>
+    <div class="rule-grid">
+      <div class="rule-box ok">
+        <h4>✓ مسموح</h4>
+        <ul>
+          <li>صور أصلية التقطتها بنفسك</li>
+          <li>خلفية بيضاء أو طبيعية نظيفة</li>
+          <li>حد أدنى 400×400 بكسل</li>
+          <li>حتى 6 صور للمنتج الواحد</li>
+          <li>صور من زوايا متعددة</li>
+          <li>إظهار العيوب والخدوش بوضوح</li>
+        </ul>
+      </div>
+      <div class="rule-box no">
+        <h4>✗ ممنوع</h4>
+        <ul>
+          <li>صور مسروقة من الإنترنت</li>
+          <li>صور تحتوي نص أو شعارات دعائية</li>
+          <li>صور مفلترة بشكل مبالغ فيه</li>
+          <li>صور مضللة لا تمثل المنتج</li>
+          <li>صور إباحية أو مسيئة</li>
+          <li>صور أقل من 200×200 بكسل</li>
+        </ul>
+      </div>
+    </div>
+    <div class="info-box">💡 المنتجات ذات الصور الأصلية الجيدة تُباع 3 أضعاف أسرع — استثمر في التصوير</div>
+  </div>
+
+  <div class="card">
+    <h2>2. 📝 قواعد العنوان والوصف</h2>
+    <h3>2.1 العنوان</h3>
+    <table>
+      <tr><th>الحقل</th><th>الشرط</th><th>مثال صحيح</th><th>مثال خاطئ</th></tr>
+      <tr><td>الطول</td><td>10 – 80 حرفاً</td><td>—</td><td>—</td></tr>
+      <tr><td>المحتوى</td><td>اسم المنتج + الماركة + الحالة</td><td>آيفون 14 برو — 256GB — مستعمل بحالة ممتازة</td><td>بيع بيع بيع هاتف رخيص جداً</td></tr>
+      <tr><td>اللغة</td><td>عربية أو فرنسية أو مزيج</td><td>Samsung Galaxy S24 جديد</td><td>AAAAA CHEAP CHEAP</td></tr>
+      <tr><td>محظور</td><td>لا أسعار في العنوان</td><td>—</td><td>هاتف بـ 500 درهم فقط!!</td></tr>
+    </table>
+    <h3>2.2 الوصف</h3>
+    <ul>
+      <li>الحد الأدنى: <strong>50 حرف</strong> — الحد الأقصى: 3000 حرف</li>
+      <li>اذكر: الحالة (جديد/مستعمل/معطوب)، المواصفات الأساسية، سبب البيع، ما هو مشمول (الشاحن، العلبة...)</li>
+      <li>لا تُضمّن أرقام هاتف أو روابط خارجية في الوصف</li>
+      <li>لا تذكر منافسيك أو مواقع أخرى</li>
+    </ul>
+    <div class="rule-grid" style="margin-top:10px">
+      <div class="rule-box ok">
+        <h4>✓ وصف جيد</h4>
+        <p style="font-size:.74rem;color:var(--muted);font-style:italic">"آيفون 14 برو 256GB لون أسود. اشتريته قبل 8 أشهر. الشاشة والكاميرا بحالة ممتازة. توجد خدشة صغيرة جانب اليسار كما في الصورة. يأتي مع الشاحن الأصلي وعلبته."</p>
+      </div>
+      <div class="rule-box no">
+        <h4>✗ وصف سيء</h4>
+        <p style="font-size:.74rem;color:var(--muted);font-style:italic">"هاتف مميز جدا للبيع. سعر خير. اتصل بي. رقمي 0612345678. أحسن من avito. لا تفوت الفرصة!!!"</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. 💰 قواعد السعر والفئة</h2>
+    <h3>3.1 السعر</h3>
+    <ul>
+      <li>السعر يجب أن يكون <strong>نهائياً شاملاً</strong> لكل التكاليف (القانون 31-08 المادة 4)</li>
+      <li>الحد الأدنى: <strong>5 دراهم</strong> — لا حد أقصى</li>
+      <li>لا يمكن رفع السعر بعد النشر إلا بإعادة مراجعة المنتج</li>
+      <li>التسعير التمييزي (نفس المنتج بأسعار مختلفة) ممنوع</li>
+    </ul>
+    <h3>3.2 اختيار الفئة الصحيحة</h3>
+    <div class="cat-grid">
+      <div class="cat-item"><div class="cat-ico">📱</div><div class="cat-lbl">إلكترونيات</div><div class="cat-sub">هواتف، أجهزة، إكسسوارات</div></div>
+      <div class="cat-item"><div class="cat-ico">👗</div><div class="cat-lbl">ملابس وأزياء</div><div class="cat-sub">ملابس، أحذية، حقائب</div></div>
+      <div class="cat-item"><div class="cat-ico">🏠</div><div class="cat-lbl">المنزل والأثاث</div><div class="cat-sub">أثاث، ديكور، مطبخ</div></div>
+      <div class="cat-item"><div class="cat-ico">🚗</div><div class="cat-lbl">سيارات</div><div class="cat-sub">مركبات، قطع غيار</div></div>
+      <div class="cat-item"><div class="cat-ico">📚</div><div class="cat-lbl">كتب وتعليم</div><div class="cat-sub">كتب، دورات، قرطاسية</div></div>
+      <div class="cat-item"><div class="cat-ico">🔧</div><div class="cat-lbl">خدمات</div><div class="cat-sub">إصلاح، تعليم، استشارات</div></div>
+    </div>
+    <div class="warn-box">⚠️ وضع المنتج في فئة خاطئة يؤدي إلى إخفائه من نتائج البحث وتأخر الموافقة</div>
+  </div>
+
+  <div class="card">
+    <h2>4. ✅ عملية المراجعة والنشر</h2>
+    <div class="step-list">
+      <div class="step-item"><div class="step-num">1</div><div class="step-info"><strong>تقديم المنتج</strong><span>ترسل المنتج للمراجعة من لوحة البائع — يبقى في حالة "قيد المراجعة"</span></div></div>
+      <div class="step-item"><div class="step-num">2</div><div class="step-info"><strong>المراجعة التلقائية (ثوانٍ)</strong><span>نظام آلي يتحقق من: طول العنوان، الصور، السعر، الكلمات المحظورة</span></div></div>
+      <div class="step-item"><div class="step-num">3</div><div class="step-info"><strong>المراجعة البشرية (حتى 24 ساعة)</strong><span>فريقنا يراجع المحتوى ويتحقق من الصور والوصف</span></div></div>
+      <div class="step-item"><div class="step-num">4</div><div class="step-info"><strong>القبول أو الرفض مع السبب</strong><span>ستصلك إشعار بالنتيجة — إذا رُفض ستعرف السبب بالتفصيل</span></div></div>
+      <div class="step-item"><div class="step-num">5</div><div class="step-info"><strong>النشر وبدء المبيعات 🚀</strong><span>يظهر المنتج للمشترين فور قبوله</span></div></div>
+    </div>
+    <h3>مدة نشاط المنتج</h3>
+    <table>
+      <tr><th>نوع المنتج</th><th>مدة النشر</th><th>التجديد</th></tr>
+      <tr><td>منتجات عادية</td><td>60 يوماً</td><td>مجاني مرة واحدة</td></tr>
+      <tr><td>Boost ⭐</td><td>60 يوماً + أولوية</td><td>49 درهم/7 أيام</td></tr>
+      <tr><td>Top 👑</td><td>60 يوماً + صدارة</td><td>99 درهم/30 يوماً</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>5. 🚫 قائمة الكلمات والمحتوى المحظور</h2>
+    <h3>كلمات تؤدي للرفض الفوري</h3>
+    <div style="display:flex;flex-wrap:wrap;gap:7px;margin:10px 0">
+      <span class="ex-no">واتساب</span><span class="ex-no">اتصل بي</span><span class="ex-no">رقم هاتفي</span>
+      <span class="ex-no">avito</span><span class="ex-no">jumia</span><span class="ex-no">مسروق</span>
+      <span class="ex-no">تقليد</span><span class="ex-no">كوبي</span><span class="ex-no">حشيش</span>
+      <span class="ex-no">سلاح</span><span class="ex-no">مسدس</span><span class="ex-no">ربح سريع</span>
+      <span class="ex-no">كاش فقط خارج المنصة</span><span class="ex-no">بدون فاتورة</span>
+    </div>
+    <h3>كلمات تتطلب توضيحاً</h3>
+    <div style="display:flex;flex-wrap:wrap;gap:7px;margin:10px 0">
+      <span class="ex-warn">مستعمل كثيراً</span><span class="ex-warn">به عيوب</span>
+      <span class="ex-warn">للتفاوض</span><span class="ex-warn">سعر قابل للنقاش</span>
+      <span class="ex-warn">دواء</span><span class="ex-warn">مكمل غذائي</span>
+    </div>
+    <div class="info-box">💡 إذا رُفض منتجك، راسلنا على <a href="/cdn-cgi/l/email-protection#8cffe9e0e0e9feffccffe3f9fda1e7e3e1a2e1ed"><span class="__cf_email__" data-cfemail="5221373e3e37202112213d27237f393d3f7c3f33">[email&#160;protected]</span></a> لفهم السبب بالتفصيل</div>
+  </div>
+
+  <div class="card">
+    <h2>6. 📦 قواعد خاصة بحالة المنتج</h2>
+    <table>
+      <tr><th>الحالة</th><th>التعريف</th><th>ما يجب ذكره</th></tr>
+      <tr><td><span class="ex-ok">جديد</span></td><td>لم يُستخدم أبداً، في علبته الأصلية</td><td>هل العلبة مفتوحة؟ هل به ضمان؟</td></tr>
+      <tr><td><span class="ex-ok">مثل الجديد</span></td><td>استُخدم نادراً بدون خدوش</td><td>مدة الاستخدام، سبب البيع</td></tr>
+      <tr><td><span class="ex-warn">ممتاز</span></td><td>خدوش طفيفة لا تؤثر وظيفياً</td><td>وصف الخدوش + صور واضحة</td></tr>
+      <tr><td><span class="ex-warn">جيد</span></td><td>آثار استخدام واضحة مع عمل كامل</td><td>كل العيوب بالصور</td></tr>
+      <tr><td><span class="ex-no">معطوب/للإصلاح</span></td><td>لا يعمل أو به عطل</td><td>تفصيل العطل بدقة — السعر يعكس الحالة</td></tr>
+    </table>
+    <div class="warn-box">⚠️ وصف حالة المنتج بشكل غير دقيق = مخالفة للقانون 31-08 المادة 18 وقد يؤدي لنزاع واسترجاع إلزامي</div>
+  </div>
+
+  <div class="footer-note">
+    آخر تحديث: مارس 2026<br>
+    <a href="seller-policy.html">سياسة البائعين</a> · <a href="terms.html">شروط الاستخدام</a> · <a hr
