@@ -13,4 +13,4 @@ Disallow: /advertiser.html
 Disallow: /payment-success.html
 Disallow: /payment-failed.html
 
-Sitemap: https://soouq.vercel.app/sitemap.xml
+Sitemap: https://soouq-kom.vercel.app/sitemap.xml
