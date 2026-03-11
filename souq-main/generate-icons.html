@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>مولّد أيقونات Souq-Kom</title>
+<style>
+body{font-family:Cairo,sans-serif;background:#0A0F1E;color:#fff;padding:30px;text-align:center}
+h1{margin-bottom:20px;font-size:1.4rem}
+canvas{display:block;margin:10px auto;border-radius:20%}
+.btns{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:20px}
+button{padding:10px 18px;background:#2355D4;color:#fff;border:none;border-radius:8px;
+  font-family:Cairo,sans-serif;font-size:.85rem;font-weight:700;cursor:pointer}
+p{color:rgba(255,255,255,.5);font-size:.8rem;margin-top:16px;max-width:500px;margin:16px auto}
+</style>
+</head>
+<body>
+<h1>🎨 مولّد أيقونات Souq-Kom PWA</h1>
+<canvas id="c" width="512" height="512"></canvas>
+<div class="btns" id="downloadBtns"></div>
+<p>افتح هذا الملف في المتصفح، ستُولَّد الأيقونات تلقائياً. اضغط كل زر لتحميل الحجم المطلوب.<br>
+ضع الملفات في مجلد <strong>/icons/</strong> في مشروعك.</p>
+
+<script>
+var sizes = [72, 96, 128, 192, 512];
+
+function drawIcon(size) {
+  var canvas = document.createElement('canvas');
+  canvas.width = size;
+  canvas.height = size;
+  var ctx = canvas.getContext('2d');
+
+  // Background gradient
+  var grad = ctx.createLinearGradient(0, 0, size, size);
+  grad.addColorStop(0, '#2355D4');
+  grad.addColorStop(1, '#0891B2');
+  
+  // Rounded rect background
+  var r = size * 0.22;
+  ctx.beginPath();
+  ctx.moveTo(r, 0);
+  ctx.lineTo(size - r, 0);
+  ctx.quadraticCurveTo(size, 0, size, r);
+  ctx.lineTo(size, size - r);
+  ctx.quadraticCurveTo(size, size, size - r, size);
+  ctx.lineTo(r, size);
+  ctx.quadraticCurveTo(0, size, 0, size - r);
+  ctx.lineTo(0, r);
+  ctx.quadraticCurveTo(0, 0, r, 0);
+  ctx.closePath();
+  ctx.fillStyle = grad;
+  ctx.fill();
+
+  // Arabic S letter (س)
+  ctx.fillStyle = '#FFFFFF';
+  ctx.font = 'bold ' + (size * 0.52) + 'px Cairo, Arial';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('س', size / 2, size / 2 + size * 0.04);
+
+  // Small dot
+  ctx.beginPath();
+  ctx.arc(size * 0.5, size * 0.82, size * 0.05, 0, Math.PI * 2);
+  ctx.fillStyle = 'rgba(255,255,255,0.6)';
+  ctx.fill();
+
+  return canvas;
+}
+
+// Draw preview
+var preview = document.getElementById('c');
+var previewCtx = preview.getContext('2d');
+var previewCanvas = drawIcon(512);
+previewCtx.drawImage(previewCanvas, 0, 0, 512, 512);
+
+// Create download buttons
+var btns = document.getElementById('downloadBtns');
+sizes.forEach(function(size) {
+  var btn = document.createElement('button');
+  btn.textContent = '⬇️ ' + size + 'x' + size + ' PNG';
+  btn.onclick = function() {
+    var c = drawIcon(size);
+    var a = document.createElement('a');
+    a.download = 'icon-' + size + '.png';
+    a.href = c.toDataURL('image/png');
+    a.click();
+  };
+  btns.appendChild(btn);
+});
+</script>
+</body>
+</html>
