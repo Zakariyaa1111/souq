@@ -644,35 +644,24 @@ async function doRegister(){
 }
 
 function showForgot(){
-  // إنشاء modal نسيت كلمة المرور
   var existing = document.getElementById('forgotModal');
-  if(existing) { existing.style.display='flex'; return; }
-  
+  if(existing){ existing.style.display='flex'; setTimeout(function(){document.getElementById('forgotEmail').focus();},100); return; }
   var modal = document.createElement('div');
   modal.id = 'forgotModal';
-  modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px';
-  modal.innerHTML = `
-    <div style="background:var(--card,#fff);border-radius:18px;padding:28px;width:100%;max-width:360px;box-shadow:0 20px 60px rgba(0,0,0,.3)">
-      <div style="text-align:center;margin-bottom:20px">
-        <div style="font-size:2.5rem;margin-bottom:8px">🔑</div>
-        <div style="font-size:1.1rem;font-weight:900;color:var(--text,#18202e)">إعادة تعيين كلمة المرور</div>
-        <div style="font-size:.82rem;color:var(--muted2,#6b7a99);margin-top:6px">سنرسل لك رابط التعيين على بريدك</div>
-      </div>
-      <div id="forgotMsg" style="display:none;padding:10px 14px;border-radius:10px;font-size:.83rem;margin-bottom:14px;text-align:center"></div>
-      <input id="forgotEmail" type="email" placeholder="أدخل بريدك الإلكتروني"
-        style="width:100%;padding:12px 14px;border-radius:11px;border:1.5px solid var(--bdr,#e2e8f4);background:var(--bg,#f4f6fa);color:var(--text,#18202e);font-size:15px;font-family:inherit;margin-bottom:14px;box-sizing:border-box"
-        onkeydown="if(event.key==='Enter')sendForgotEmail()">
-      <button onclick="sendForgotEmail()" id="forgotBtn"
-        style="width:100%;padding:13px;background:linear-gradient(135deg,#2355D4,#0891B2);color:#fff;border:none;border-radius:12px;font-size:.95rem;font-weight:800;font-family:inherit;cursor:pointer;margin-bottom:10px">
-        إرسال رابط التعيين
-      </button>
-      <button onclick="document.getElementById('forgotModal').style.display='none'"
-        style="width:100%;padding:11px;background:none;border:1.5px solid var(--bdr,#e2e8f4);border-radius:11px;font-size:.88rem;font-weight:700;font-family:inherit;cursor:pointer;color:var(--muted2,#6b7a99)">
-        إلغاء
-      </button>
-    </div>`;
+  modal.setAttribute('style','position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px');
+  var box = document.createElement('div');
+  box.setAttribute('style','background:#fff;border-radius:18px;padding:28px;width:100%;max-width:360px;box-shadow:0 20px 60px rgba(0,0,0,.3)');
+  box.innerHTML = '<div style="text-align:center;margin-bottom:20px"><div style="font-size:2.5rem;margin-bottom:8px">&#128273;</div>'
+    + '<div style="font-size:1.1rem;font-weight:900;margin-bottom:4px">&#x625;&#x639;&#x627;&#x62f;&#x629; &#x62a;&#x639;&#x64a;&#x64a;&#x646; &#x643;&#x644;&#x645;&#x629; &#x627;&#x644;&#x645;&#x631;&#x648;&#x631;</div>'
+    + '<div style="font-size:.82rem;color:#6b7a99;margin-top:4px">&#x633;&#x646;&#x631;&#x633;&#x644; &#x644;&#x643; &#x631;&#x627;&#x628;&#x637; &#x627;&#x644;&#x62a;&#x639;&#x64a;&#x64a;&#x646; &#x639;&#x644;&#x649; &#x628;&#x631;&#x64a;&#x62f;&#x643;</div></div>'
+    + '<div id="forgotMsg" style="display:none;padding:10px;border-radius:10px;font-size:.83rem;margin-bottom:12px;text-align:center"></div>'
+    + '<input id="forgotEmail" type="email" placeholder="example@email.com" style="width:100%;padding:12px 14px;border-radius:11px;border:1.5px solid #e2e8f4;background:#f4f6fa;font-size:16px;font-family:inherit;margin-bottom:12px;box-sizing:border-box;direction:ltr">'
+    + '<button id="forgotBtn" onclick="sendForgotEmail()" style="width:100%;padding:13px;background:linear-gradient(135deg,#2355D4,#0891B2);color:#fff;border:none;border-radius:12px;font-size:.95rem;font-weight:800;font-family:inherit;cursor:pointer;margin-bottom:8px">&#x625;&#x631;&#x633;&#x627;&#x644; &#x631;&#x627;&#x628;&#x637; &#x627;&#x644;&#x62a;&#x639;&#x64a;&#x64a;&#x646;</button>'
+    + '<button onclick="document.getElementById('forgotModal').style.display='none'" style="width:100%;padding:11px;background:none;border:1.5px solid #e2e8f4;border-radius:11px;font-size:.88rem;font-weight:700;font-family:inherit;cursor:pointer;color:#6b7a99">&#x625;&#x644;&#x63a;&#x627;&#x621;</button>';
+  modal.appendChild(box);
   document.body.appendChild(modal);
-  setTimeout(()=>document.getElementById('forgotEmail')?.focus(), 100);
+  document.getElementById('forgotEmail').addEventListener('keydown', function(e){ if(e.key==='Enter') sendForgotEmail(); });
+  setTimeout(function(){document.getElementById('forgotEmail').focus();},100);
 }
 
 async function sendForgotEmail(){
@@ -1014,7 +1003,9 @@ resetAdvTimer();
 // ═══ PWA Service Worker Registration ═══
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function() {
-    navigator.serviceWorker.register('/sw.js', { scope: '/' })
+    // Only register SW on production domain
+    var isLocal = location.hostname === 'localhost' || location.hostname.includes('claudeusercontent');
+    if(!isLocal) navigator.serviceWorker.register('/sw.js', { scope: '/' })
       .then(function(reg) {
         console.log('[PWA] SW registered:', reg.scope);
         setInterval(function() { reg.update(); }, 60000);
