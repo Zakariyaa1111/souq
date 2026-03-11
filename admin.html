@@ -95,6 +95,21 @@ window.DOMPurify={sanitize:function(s){
   <link rel="manifest" href="/manifest.json">
 </head>
 <body>
+<script>
+(function(){
+  var stored = sessionStorage.getItem('adm_ok');
+  if(stored === '1') return;
+  var password = prompt("🔐 أدخل كلمة مرور الإدارة:");
+  if(password === null){ window.location.href='index.html'; return; }
+  if(btoa(password) === 'TElWRSNJU0BIQVJEI0tFRVA='){
+    sessionStorage.setItem('adm_ok','1');
+  } else {
+    alert("❌ كلمة السر خاطئة!");
+    window.location.href='index.html';
+  }
+})();
+</script>
+
 <!-- Offline Indicator -->
 <div id="onlineIndicator" style="display:none;position:fixed;bottom:16px;left:50%;transform:translateX(-50%);
   background:#DC2626;color:#fff;padding:8px 20px;border-radius:30px;font-family:Cairo,sans-serif;
@@ -124,28 +139,20 @@ window.DOMPurify={sanitize:function(s){
   </button>
 </div>
 <script>
+// Show password warning if using default password
 (function(){
-    // الكود المشفر الخاص بك
-    var hash = 'TElWRSNJU0BIQVJEI0tFRVA=';
-    
-    // اطلب كلمة المرور من المستخدم
-    var password = prompt("المرجو إدخال كلمة مرور المدير:");
-
-    if (password !== null) {
-        // نقوم بتحويل ما كتبه المستخدم إلى Base64 ومقارنته بالـ hash
-        if (btoa(password) === hash) {
-            alert("تم الدخول بنجاح!");
-            // هنا تضع الكود لإظهار محتوى الصفحة، مثلاً:
-            document.body.style.display = 'block';
-        } else {
-            alert("كلمة السر خاطئة!");
-            window.location.href = 'index.html';
-        }
-    } else {
-        window.location.href = 'index.html';
-    }
+  var b64 = document.querySelector ? null : null;
+  // Check if still default - compare hash
+  var isDefault = atob('U291cUtvbUBBZG1pbjIwMjY=') === 'SouqKom@Admin2026';
+  if(isDefault){
+    window.addEventListener('DOMContentLoaded', function(){
+      var w = document.getElementById('pwdWarning');
+      if(w) w.style.display = 'block';
+    });
+  }
 })();
 </script>
+
 
 <div id="authGate">
   <div class="gate-card">
