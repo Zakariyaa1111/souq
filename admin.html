@@ -93,6 +93,17 @@ window.DOMPurify={sanitize:function(s){
   <meta name="msapplication-TileImage" content="/icons/icon-192.png">
   <meta name="msapplication-TileColor" content="#2355D4">
   <link rel="manifest" href="/manifest.json">
+<script>
+function checkPass(){ if(window._checkPass) window._checkPass(); else setTimeout(checkPass,100); }
+function doAdminLogin(){ if(window._doAdminLogin) window._doAdminLogin(); else setTimeout(doAdminLogin,100); }
+function adminForgotPass(){ if(window._adminForgotPass) window._adminForgotPass(); else setTimeout(adminForgotPass,100); }
+function promptPWAInstall(){ if(window._promptPWAInstall) window._promptPWAInstall(); }
+function toggleTheme(){ var dk=document.documentElement.getAttribute('data-theme')==='dark'; document.documentElement.setAttribute('data-theme',dk?'':'dark'); localStorage.setItem('theme',dk?'':'dark'); }
+function doLogout(){ if(window._doLogout) window._doLogout(); else { sessionStorage.clear(); localStorage.clear(); location.href='index.html'; } }
+function at(id,el){ if(window._at) window._at(id,el); }
+function approveSeller(id){ if(window._approveSeller) window._approveSeller(id); }
+function rejectSeller(id){ if(window._rejectSeller) window._rejectSeller(id); }
+</script>
 </head>
 <body>
 <script>
