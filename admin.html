@@ -159,13 +159,13 @@ window.DOMPurify={sanitize:function(s){
     <div class="gate-ico">🔐</div>
     <h2>لوحة الإدارة</h2>
     <p>هذه الصفحة محمية بمستويين من الأمان</p>
-    <span class="gate-step" id="gateStepLabel">الخطوة 1 من 2 — كلمة سر الإدارة</span>
+    <span class="gate-step" id="gateStepLabel">تسجيل الدخول بحساب الإدارة</span>
     <div class="gate-err" id="gateErr"></div>
-    <div id="step1">
+    <div id="step1" style="display:none">
       <input class="gate-input" id="adminPass" type="password" placeholder="كلمة سر الإدارة" onkeydown="if(event.key==='Enter')checkPass()">
       <button class="gate-btn" id="gateBtn1" onclick="checkPass()">متابعة</button>
     </div>
-    <div id="step2" style="display:none">
+    <div id="step2">
       <input class="gate-input" id="gate_email" type="email" placeholder="البريد الإلكتروني (حساب أدمن)">
       <input class="gate-input" id="gate_pass" type="password" placeholder="كلمة مرور الحساب" onkeydown="if(event.key==='Enter')doAdminLogin()">
       <button class="gate-btn" id="gateBtn2" onclick="doAdminLogin()" style="margin-bottom:8px">دخول</button>
@@ -332,24 +332,9 @@ async function authFetch(path,body){
 // الحل المؤقت الأكثر أماناً: التحقق فقط عبر دور "admin" في Supabase Auth
 
 function checkPass(){
-  const pass=document.getElementById('adminPass').value;
   const errEl=document.getElementById('gateErr');
-  // تحقق من rate limiting أولاً
-  var rl=checkAdminRateLimit();
-  if(rl){errEl.textContent=rl;errEl.style.display='block';return;}
-  // ⚠️ تنبيه أمني: يُنصح بنقل التحقق من كلمة المرور إلى Supabase Edge Function
-  // استبدل هذه القيمة بكلمة مرور قوية من 12+ حرف ولا تشاركها
-  const ADMIN_CODE = document.getElementById('adminPass').value;
-  // التحقق السريع — للإنتاج استخدم Edge Function
-  // 🔐 كلمة مرور Admin — غيّرها قبل النشر!
-  // الكلمة الافتراضية: SouqKom@Admin2026
-  // لتغييرها: في console المتصفح: btoa('كلمتك_الجديدة')
-  // ثم ضع الناتج بدلاً من 'U291cUtvbUBBZG1pbjIwMjY='
-  const validCode = atob('U291cUtvbUBBZG1pbjIwMjY=');
-  if(ADMIN_CODE!==validCode){
-    errEl.textContent='كلمة السر غير صحيحة';errEl.style.display='block';
-    document.getElementById('adminPass').value='';return;
-  }
+  // تم التحقق بالـ prompt — ننتقل مباشرة لتسجيل الدخول
+  {
   errEl.style.display='none';
   document.getElementById('step1').style.display='none';
   document.getElementById('step2').style.display='block';
