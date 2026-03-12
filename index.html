@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- ══ SECURITY HEADERS ══ -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self' https://*.supabase.co https://cdnjs.cloudflare.com; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://*.supabase.co https://*.supabase.in; connect-src 'self' https://*.supabase.co https://*.supabase.in; frame-src https://challenges.cloudflare.com; font-src 'self' data:;">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' https://*.supabase.co https://cdnjs.cloudflare.com; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://*.supabase.co https://*.supabase.in; connect-src 'self' https://*.supabase.co https://*.supabase.in; font-src 'self' data:;">
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta http-equiv="X-Frame-Options" content="DENY">
 <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
@@ -1071,7 +1071,7 @@ async function submitRating() {
   <link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192.png">
   <meta name="msapplication-TileImage" content="/icons/icon-192.png">
   <meta name="msapplication-TileColor" content="#2355D4">
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <!-- Turnstile disabled until real key is set -->
 </head>
 <body>
 <!-- Offline Indicator -->
@@ -1103,6 +1103,7 @@ async function submitRating() {
   <div class="nav-links">
     <button class="nb" onclick="gp('home')">الرئيسية</button>
     <button class="nb" onclick="gp('products')">المنتجات</button>
+    <button class="nb" onclick="gp('how')">كيف يعمل</button>
     <div class="nav-divider"></div>
     <button class="nb" onclick="gp('reg')">بيع معنا</button>
     <button class="nb" onclick="goSeller()">لوحة البائع</button>
@@ -1318,7 +1319,7 @@ async function submitRating() {
     <div class="hero-content">
     <div class="hero-tag">🇲🇦 سوق إلكتروني مغربي مفتوح للجميع</div>
     <h1><span class="hl1">بيع واشترِ</span><br><span class="hl2">بكل سهولة</span></h1>
-    <p class="hero-sub">منصة تجمع البائعين والمشترين في مكان واحد<br>ضع منتجك وابدأ البيع في دقائق</p>
+    <p class="hero-sub">منصة تجمع البائعين والمشترين في مكان واحد</p>
     <div class="hero-btns">
       <button class="hb1" onclick="gp('products')">🛍️ تسوق الآن</button>
       <button class="hb2" onclick="gp('reg')">💼 ابدأ البيع</button>
@@ -1393,17 +1394,62 @@ async function submitRating() {
     </div>
   </section>
 
-  <section class="sec">
-    <div class="sh"><div class="sh-eye">كيف يعمل</div><div class="sh-t">ابدأ في 3 خطوات</div></div>
-    <div class="steps">
-      <div class="step"><div class="step-n sn1">1</div><div class="step-t">سجّل كبائع</div><div class="step-s">أنشئ حسابك مجاناً وقدّم معلومات متجرك في دقائق</div></div>
-      <div class="step"><div class="step-n sn2">2</div><div class="step-t">أضف منتجاتك</div><div class="step-s">ارفع صور منتجاتك وحدد السعر والوصف بسهولة</div></div>
-      <div class="step"><div class="step-n sn3">3</div><div class="step-t">ابدأ البيع</div><div class="step-s">استقبل الطلبات واستلم أرباحك مباشرة في حسابك</div></div>
-    </div>
-  </section>
+  
 </div>
 
 <!-- ═══════ PRODUCTS ═══════ -->
+
+<!-- ══ PAGE: كيف يعمل ══ -->
+<div class="page" id="page-how">
+  <section class="sec" style="max-width:780px;margin:0 auto;padding:32px 16px">
+    <div class="sh"><div class="sh-eye">دليل</div><div class="sh-t">كيف يعمل Souq-Kom؟</div></div>
+
+    <div style="margin-bottom:28px">
+      <div style="font-size:1rem;font-weight:900;color:var(--blue);margin-bottom:14px;padding:10px 14px;background:rgba(37,99,235,.07);border-radius:10px;display:inline-block">🛒 للمشترين</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1.5px solid var(--bdr);border-radius:14px;padding:16px">
+          <div style="width:34px;height:34px;min-width:34px;border-radius:10px;background:linear-gradient(135deg,#2563EB,#0891B2);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.9rem">1</div>
+          <div><div style="font-weight:800;margin-bottom:3px">تصفّح المنتجات</div><div style="font-size:.84rem;color:var(--muted)">ابحث عن ما تريد أو تصفّح حسب الفئة — إلكترونيات، ملابس، سيارات وغيرها</div></div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1.5px solid var(--bdr);border-radius:14px;padding:16px">
+          <div style="width:34px;height:34px;min-width:34px;border-radius:10px;background:linear-gradient(135deg,#2563EB,#0891B2);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.9rem">2</div>
+          <div><div style="font-weight:800;margin-bottom:3px">أضف للسلة واشترِ</div><div style="font-size:.84rem;color:var(--muted)">اختر المنتج وأضفه للسلة أو اشترِه مباشرة بضغطة واحدة</div></div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1.5px solid var(--bdr);border-radius:14px;padding:16px">
+          <div style="width:34px;height:34px;min-width:34px;border-radius:10px;background:linear-gradient(135deg,#2563EB,#0891B2);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.9rem">3</div>
+          <div><div style="font-weight:800;margin-bottom:3px">تواصل مع البائع</div><div style="font-size:.84rem;color:var(--muted)">تحدّث مع البائع مباشرة أو عبر واتساب لتأكيد الطلب والتسليم</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:28px">
+      <div style="font-size:1rem;font-weight:900;color:var(--green);margin-bottom:14px;padding:10px 14px;background:rgba(5,150,105,.07);border-radius:10px;display:inline-block">💼 للبائعين</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1.5px solid var(--bdr);border-radius:14px;padding:16px">
+          <div style="width:34px;height:34px;min-width:34px;border-radius:10px;background:linear-gradient(135deg,#059669,#0d9488);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.9rem">1</div>
+          <div><div style="font-weight:800;margin-bottom:3px">سجّل متجرك مجاناً</div><div style="font-size:.84rem;color:var(--muted)">أنشئ حسابك كبائع وأضف معلومات متجرك في دقائق</div></div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1.5px solid var(--bdr);border-radius:14px;padding:16px">
+          <div style="width:34px;height:34px;min-width:34px;border-radius:10px;background:linear-gradient(135deg,#059669,#0d9488);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.9rem">2</div>
+          <div><div style="font-weight:800;margin-bottom:3px">أضف منتجاتك</div><div style="font-size:.84rem;color:var(--muted)">ارفع الصور، حدد السعر والفئة وانتظر موافقة الإدارة</div></div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1.5px solid var(--bdr);border-radius:14px;padding:16px">
+          <div style="width:34px;height:34px;min-width:34px;border-radius:10px;background:linear-gradient(135deg,#059669,#0d9488);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.9rem">3</div>
+          <div><div style="font-weight:800;margin-bottom:3px">استلم طلباتك وأرباحك</div><div style="font-size:.84rem;color:var(--muted)">تابع طلباتك من لوحة البائع واستلم أرباحك مباشرة</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:linear-gradient(135deg,#2563EB,#0891B2);border-radius:16px;padding:24px;text-align:center;color:#fff">
+      <div style="font-size:1.15rem;font-weight:900;margin-bottom:6px">🚀 ابدأ الآن مجاناً</div>
+      <div style="font-size:.85rem;opacity:.85;margin-bottom:16px">انضم لآلاف البائعين والمشترين على Souq-Kom</div>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+        <button onclick="gp('products')" style="padding:11px 20px;background:rgba(255,255,255,.2);color:#fff;border:1.5px solid rgba(255,255,255,.4);border-radius:10px;font-weight:700;font-family:inherit;cursor:pointer;font-size:.88rem">🛍️ تسوق الآن</button>
+        <button onclick="gp('reg')" style="padding:11px 20px;background:#fff;color:#2563EB;border:none;border-radius:10px;font-weight:800;font-family:inherit;cursor:pointer;font-size:.88rem">💼 ابدأ البيع</button>
+      </div>
+    </div>
+  </section>
+</div>
 <div class="page" id="page-products">
   <div class="search-sec">
     <div class="sbar">
@@ -1944,7 +1990,7 @@ async function submitRating() {
         </div>
         <button onclick="pdAddToCart()" style="flex:1;padding:13px;background:var(--blue);color:#fff;border-radius:12px;font-size:.96rem;font-weight:800;font-family:inherit">🛒 أضف للسلة</button>
       </div>
-      <button onclick="pdBuyNow()" style="width:100%;padding:13px;background:var(--green);color:#fff;border-radius:12px;font-size:.96rem;font-weight:800;font-family:inherit;margin-bottom:10px">⚡ اشترِ الآن</button>
+      <button onclick="pdBuyNow()" style="width:100%;padding:13px;background:linear-gradient(135deg,#16a34a,#059669);color:#fff;border-radius:12px;font-size:.96rem;font-weight:800;font-family:inherit;margin-bottom:10px;box-shadow:0 4px 16px rgba(5,150,105,.45);border:none">⚡ اشترِ الآن</button>
       <button onclick="contactSeller()" style="width:100%;padding:11px;background:none;border:1.5px solid var(--blue);color:var(--blue);border-radius:12px;font-size:.88rem;font-weight:700;font-family:inherit;margin-bottom:10px">💬 تواصل داخل الموقع</button>
       <button id="pdWhatsappBtn" onclick="contactSellerWhatsapp()" style="width:100%;padding:11px;background:#25D366;color:#fff;border-radius:12px;font-size:.88rem;font-weight:700;font-family:inherit;margin-bottom:10px;display:none">📱 تواصل عبر واتساب</button>
       <button id="pdRateBtn" onclick="rateCurrentSeller()" style="width:100%;padding:9px;background:none;border:1.5px solid rgba(245,158,11,.25);color:#f59e0b;border-radius:11px;font-size:.78rem;font-weight:700;font-family:inherit;opacity:.8;transition:.2s;margin-bottom:8px" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='.8'">⭐ تقييم البائع</button>
@@ -2041,6 +2087,16 @@ async function submitRating() {
 .sim-name{font-size:.72rem;font-weight:700;margin-bottom:3px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .sim-price{font-size:.7rem;font-weight:900;color:var(--blue)}
 
+
+/* ══ HERO: DESKTOP = MOBILE ══ */
+.hero{text-align:center !important}
+.hero h1{text-align:center !important}
+.hero-sub{text-align:center !important; max-width:560px; margin:12px auto !important}
+.hero-btns{justify-content:center !important; flex-wrap:wrap !important}
+.hero-stats{justify-content:center !important}
+.hi-card, .hero-illustration, .hero-float{display:none !important}
+.hero-content, .hero-text{max-width:680px; margin:0 auto !important; text-align:center !important; float:none !important}
+.hero-inner, .hero-wrap{flex-direction:column !important; text-align:center !important}
 </style>
 <div id="payModal" style="display:none;position:fixed;inset:0;z-index:900;background:rgba(0,0,0,0.6);align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(8px)">
   <div style="background:var(--card);border:1px solid var(--bdr);border-radius:24px;width:100%;max-width:460px;box-shadow:0 24px 64px rgba(0,0,0,0.28);overflow:hidden">
@@ -2151,7 +2207,7 @@ async function submitRating() {
 <div class="modal-bg" id="loginModal">
   <div class="modal">
     
-<div class="cf-turnstile" data-sitekey="YOUR_TURNSTILE_SITE_KEY" data-theme="dark" data-language="ar" style="margin-bottom:12px;display:none;justify-content:center" id="regCaptcha"></div>
+<!-- captcha placeholder -->
 <div class="modal-ico">د</div>
     <h3>تسجيل الدخول</h3>
     <p>أدخل بياناتك للدخول لحسابك</p>
@@ -2181,6 +2237,7 @@ async function submitRating() {
   <div class="mob-drawer-body">
     <div class="mob-drawer-item" onclick="gp('home');closeDrawer()"><div class="dric" style="background:rgba(37,99,235,0.1)">🏠</div>الرئيسية</div>
     <div class="mob-drawer-item" onclick="gp('products');closeDrawer()"><div class="dric" style="background:rgba(8,145,178,0.1)">🛍</div>المنتجات</div>
+    <div class="mob-drawer-item" onclick="gp('how');closeDrawer()"><div class="dric" style="background:rgba(245,158,11,0.12)">❓</div>كيف يعمل</div>
     <div class="mob-drawer-item" onclick="gp('reg');closeDrawer()"><div class="dric" style="background:rgba(5,150,105,0.1)">➕</div>بيع معنا</div>
     <div class="mob-drawer-item" onclick="goSeller();closeDrawer()"><div class="dric" style="background:rgba(124,58,237,0.1)">📊</div>لوحة البائع</div>
     <div class="mob-drawer-divider"></div>
@@ -2718,20 +2775,26 @@ function pdBuyNow() {
 var allProducts = [];
 async function loadHomePage() {
   showSkeleton('homeProductsGrid', 8);
-  const products = await loadProducts();
+  // حمّل مباشرة بدون أي فلتر إضافي
+  const r = await supaFetch('/rest/v1/products?select=*,profiles(id,store_name,full_name)&status=eq.active&order=created_at.desc&limit=100');
+  const products = (r.ok && Array.isArray(r.data)) ? r.data : [];
   allProducts = products;
   renderProductGrid('homeProductsGrid', products.slice(0, 8));
   await updateCategoryCounts(products);
-  // update stats
-  const [sellers, buyers, prods] = await Promise.all([
-    supaFetch('/rest/v1/profiles?role=eq.seller&select=id', {headers:{'Prefer':'count=exact'}}),
-    supaFetch('/rest/v1/profiles?role=eq.buyer&select=id', {headers:{'Prefer':'count=exact'}}),
-    supaFetch('/rest/v1/products?status=eq.active&select=id', {headers:{'Prefer':'count=exact'}})
+  // إحصائيات
+  const [sellers, prods] = await Promise.all([
+    supaFetch('/rest/v1/profiles?role=eq.seller&select=id'),
+    supaFetch('/rest/v1/products?status=eq.active&select=id')
   ]);
+  const se = sellers.ok && sellers.data ? sellers.data.length : 0;
+  const pr = prods.ok && prods.data ? prods.data.length : 0;
+  var hs = document.getElementById('heroSellers');
+  var hp = document.getElementById('heroProducts');
+  if(hs) hs.textContent = se;
+  if(hp) hp.textContent = pr;
   const statEls = document.querySelectorAll('.stat-n');
-  if (statEls[0]) statEls[0].textContent = sellers.ok ? sellers.data.length : 0;
-  if (statEls[1]) statEls[1].textContent = prods.ok ? prods.data.length : 0;
-  if (statEls[2]) statEls[2].textContent = buyers.ok ? buyers.data.length : 0;
+  if(statEls[0]) statEls[0].textContent = se;
+  if(statEls[1]) statEls[1].textContent = pr;
 }
 
 async function loadProductsPage(category='') {
@@ -2834,16 +2897,14 @@ function getCatAccent(cat) {
 
 // ══ CATEGORY FILTER + COUNTS ══
 function filterByCategory(cat, el) {
-  // تحديث UI الفئات
   document.querySelectorAll('.cat').forEach(c => c.classList.remove('active'));
   if(el) el.classList.add('active');
-  // تصفية المنتجات
-  var filtered = allProducts ? allProducts.filter(p => p.category === cat) : [];
-  renderProductGrid('productsGrid', filtered);
   gp('products');
-  // تحديث عنوان الصفحة
+  // تحديث العنوان فوراً
   var title = document.querySelector('#page-products .sec-row h2');
-  if(title) title.textContent = 'فئة: ' + cat + ' (' + filtered.length + ' منتج)';
+  if(title) title.textContent = 'فئة: ' + cat + '...';
+  // حمّل من Supabase مباشرة بالفئة الصحيحة — لا تعتمد على allProducts
+  loadProductsPage(cat);
 }
 
 async function updateCategoryCounts(products) {
@@ -2852,10 +2913,11 @@ async function updateCategoryCounts(products) {
     const cat = p.category || 'أخرى';
     counts[cat] = (counts[cat]||0) + 1;
   });
-  // تحديث عدادات الفئات
-  Object.entries(counts).forEach(([cat, count]) => {
+  // اجعل كل الفئات تعكس العدد الحقيقي (صفر إن لم يكن)
+  const allCats = ['إلكترونيات','ملابس وأزياء','منزل وديكور','كتب','ألعاب','جمال وعناية','سيارات','رياضة','أخرى'];
+  allCats.forEach(cat => {
     const el = document.getElementById('cc-' + cat);
-    if(el) el.textContent = count + ' منتج';
+    if(el) el.textContent = (counts[cat]||0) + ' منتج';
   });
 }
 
@@ -3718,9 +3780,9 @@ function renderSimilarProducts(products) {
     products.map(function(p) {
       var hasImg = p.images && p.images[0];
       var icon = getCatIcon(p.category);
-      return '<div class="sim-card" onclick="openProduct('' + esc(p.id) + '')">' +
+      return '<div class="sim-card" onclick="openProduct(\'' + esc(p.id) + '\')">' +
         '<div class="sim-img">' +
-        (hasImg ? '<img src="' + esc(p.images[0]) + '" style="width:100%;height:100%;object-fit:cover" onerror="this.parentElement.innerHTML='' + icon + ''">' : icon) +
+        (hasImg ? '<img src="' + esc(p.images[0]) + '" style="width:100%;height:100%;object-fit:cover" onerror="this.parentElement.innerHTML=\'' + icon + '\'">' : icon) +
         '</div>' +
         '<div class="sim-info"><div class="sim-name">' + esc(p.name) + '</div>' +
         '<div class="sim-price">' + Number(p.price) + ' DH</div></div></div>';
@@ -3861,3 +3923,37 @@ window.addEventListener('online',  updateOnlineStatus);
 window.addEventListener('offline', updateOnlineStatus);
 updateOnlineStatus();
 </script>
+
+<!-- ══ REPORT MODAL ══ -->
+<div id="reportModal" style="position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9999;display:none;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(4px)" onclick="if(event.target===this)closeReportModal()">
+  <div style="background:var(--card);border:1.5px solid var(--bdr);border-radius:20px;padding:26px;width:100%;max-width:420px;box-shadow:0 20px 60px rgba(0,0,0,.3)">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+      <div style="font-size:1rem;font-weight:900;color:var(--red)">⚑ الإبلاغ عن منتج</div>
+      <button onclick="closeReportModal()" style="width:30px;height:30px;border-radius:8px;background:var(--light);border:none;font-size:1.1rem;cursor:pointer;color:var(--muted);display:flex;align-items:center;justify-content:center">×</button>
+    </div>
+    <div id="reportProductInfo" style="background:var(--bg);border-radius:10px;padding:10px 14px;font-size:.82rem;color:var(--muted);margin-bottom:16px;border:1px solid var(--bdr)"></div>
+    <div style="font-size:.8rem;font-weight:700;color:var(--muted);margin-bottom:10px">سبب البلاغ *</div>
+    <div id="reportReasons" style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px">
+      <label onclick="selReason(this)" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border:1.5px solid var(--bdr);border-radius:10px;cursor:pointer;font-size:.84rem;font-weight:600;transition:.15s">
+        <input type="radio" name="rReason" value="fake" style="accent-color:var(--red)"> منتج مزيف أو احتيالي
+      </label>
+      <label onclick="selReason(this)" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border:1.5px solid var(--bdr);border-radius:10px;cursor:pointer;font-size:.84rem;font-weight:600;transition:.15s">
+        <input type="radio" name="rReason" value="prohibited" style="accent-color:var(--red)"> منتج محظور أو غير قانوني
+      </label>
+      <label onclick="selReason(this)" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border:1.5px solid var(--bdr);border-radius:10px;cursor:pointer;font-size:.84rem;font-weight:600;transition:.15s">
+        <input type="radio" name="rReason" value="misleading" style="accent-color:var(--red)"> معلومات مضللة
+      </label>
+      <label onclick="selReason(this)" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border:1.5px solid var(--bdr);border-radius:10px;cursor:pointer;font-size:.84rem;font-weight:600;transition:.15s">
+        <input type="radio" name="rReason" value="other" style="accent-color:var(--red)"> سبب آخر
+      </label>
+    </div>
+    <textarea id="reportDetails" placeholder="تفاصيل إضافية (اختياري)..." style="width:100%;padding:11px 14px;background:var(--bg);border:1.5px solid var(--bdr);border-radius:10px;color:var(--text);font-size:.84rem;font-family:inherit;resize:vertical;min-height:70px;margin-bottom:14px;box-sizing:border-box"></textarea>
+    <div style="display:flex;gap:10px">
+      <button onclick="submitReport()" style="flex:1;padding:12px;background:var(--red);color:#fff;border-radius:11px;font-weight:800;font-size:.9rem;font-family:inherit;border:none;cursor:pointer">إرسال البلاغ</button>
+      <button onclick="closeReportModal()" style="flex:1;padding:12px;background:none;border:1.5px solid var(--bdr);border-radius:11px;font-weight:700;font-size:.9rem;font-family:inherit;color:var(--muted);cursor:pointer">إلغاء</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
