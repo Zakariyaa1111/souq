@@ -101,20 +101,20 @@ button,input,select,textarea{font-family:inherit;border:none;outline:none;cursor
       {
         "type": "text",
         "text": "    60	.ta-d{background:rgba(220,38,38,0.08);color:var(--red)}.ta-d:hover{background:rgba(220,38,38,0.15)}
-    61	.ab{padding:5px 10px;background:rgba(5,150,105,0.1);color:#059669;border-radius:6px;font-size:.71rem;font-weight:700}.ab:hover{background:rgba(5,150,105,0.18)}
-    62	.rb{padding:5px 10px;background:rgba(220,38,38,0.08);color:var(--red);border-radius:6px;font-size:.71rem;font-weight:700}.rb:hover{background:rgba(220,38,38,0.15)}
-    63	.panel{background:var(--card);border:1.5px solid var(--bdr);border-radius:14px;padding:18px;margin-bottom:16px}
-    64	.panel-t{font-size:.94rem;font-weight:800;margin-bottom:13px;color:var(--text)}
-    65	.dgh{margin-bottom:20px}.dgh h2{font-size:1.25rem;font-weight:900;margin-bottom:3px;color:var(--text)}.dgh p{color:var(--muted2);font-size:.84rem}
-    66	.empty{display:flex;flex-direction:column;align-items:center;padding:40px 20px;text-align:center}
-    67	.empty-ic{width:54px;height:54px;border-radius:14px;background:rgba(37,99,235,0.08);border:1.5px solid rgba(37,99,235,0.15);display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:900;color:var(--blue);margin:0 auto 12px}
-    68	.empty h3{font-size:1rem;font-weight:800;margin-bottom:5px;color:var(--text)}.empty p{font-size:.82rem;color:var(--muted2)}
-    69	.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(120px);border-radius:10px;padding:10px 20px;font-size:.84rem;font-weight:600;color:#fff;transition:transform .3s ease;z-index:9999}
-    70	.toast.show{transform:translateX(-50%) translateY(0)}.tok{background:var(--green)}.terr{background:var(--red)}.tinfo{background:var(--blue)}
-    71	@media(max-width:900px){.alayout{grid-template-columns:1fr}.aside{display:none}.akpis{grid-template-columns:repeat(2,1fr)}}
-    72	</style>
-    73	</head>
-    74	<body>
+.ab{padding:5px 10px;background:rgba(5,150,105,0.1);color:#059669;border-radius:6px;font-size:.71rem;font-weight:700}.ab:hover{background:rgba(5,150,105,0.18)}
+.rb{padding:5px 10px;background:rgba(220,38,38,0.08);color:var(--red);border-radius:6px;font-size:.71rem;font-weight:700}.rb:hover{background:rgba(220,38,38,0.15)}
+.panel{background:var(--card);border:1.5px solid var(--bdr);border-radius:14px;padding:18px;margin-bottom:16px}
+.panel-t{font-size:.94rem;font-weight:800;margin-bottom:13px;color:var(--text)}
+.dgh{margin-bottom:20px}.dgh h2{font-size:1.25rem;font-weight:900;margin-bottom:3px;color:var(--text)}.dgh p{color:var(--muted2);font-size:.84rem}
+.empty{display:flex;flex-direction:column;align-items:center;padding:40px 20px;text-align:center}
+.empty-ic{width:54px;height:54px;border-radius:14px;background:rgba(37,99,235,0.08);border:1.5px solid rgba(37,99,235,0.15);display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:900;color:var(--blue);margin:0 auto 12px}
+.empty h3{font-size:1rem;font-weight:800;margin-bottom:5px;color:var(--text)}.empty p{font-size:.82rem;color:var(--muted2)}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(120px);border-radius:10px;padding:10px 20px;font-size:.84rem;font-weight:600;color:#fff;transition:transform .3s ease;z-index:9999}
+.toast.show{transform:translateX(-50%) translateY(0)}.tok{background:var(--green)}.terr{background:var(--red)}.tinfo{background:var(--blue)}
+@media(max-width:900px){.alayout{grid-template-columns:1fr}.aside{display:none}.akpis{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
 <script>
 (function(){
   if(sessionStorage.getItem('adm_ok')==='1') return;
@@ -124,8 +124,8 @@ button,input,select,textarea{font-family:inherit;border:none;outline:none;cursor
   else{ alert('❌ كلمة السر خاطئة!'); location.href='index.html'; }
 })();
 </script>
-    75	
-    76	<div id="authGate" style="position:fixed;inset:0;background:linear-gradient(135deg,#0D0D1A,#1a1035);z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px">
+
+<div id="authGate" style="position:fixed;inset:0;background:linear-gradient(135deg,#0D0D1A,#1a1035);z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px">
   <div style="width:100%;max-width:400px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:32px">
     <div style="text-align:center;margin-bottom:24px">
       <div style="font-size:2.5rem">🔐</div>
@@ -155,91 +155,91 @@ button,input,select,textarea{font-family:inherit;border:none;outline:none;cursor
     </div>
   </div>
 </div>
-    96	
-    97	<div class="topbar">
-    98	  <div class="brand" onclick="window.location.href='index.html'" dir="ltr">
-    99	    <div class="brand-icon">ك</div><em>Souq</em>-Kom
-   100	  </div>
-   101	  <div style="display:flex;align-items:center;gap:8px">
-   102	    <span class="admin-badge">?? أدمن</span>
-   103	    <span id="topAdminName" style="font-size:.83rem;font-weight:700;color:var(--text)"></span>
-   104	  </div>
-   105	  <div class="topbar-right">
-   106	    <button class="theme-btn" onclick="toggleTheme()"></button>
-   107	    <button class="btn-ol" onclick="window.location.href='index.html'">الموقع</button>
-   108	    <button class="btn-ol" onclick="doLogout()">خروج</button>
-   109	  </div>
-   110	</div>
-   111	
-   112	<div class="alayout">
-   113	  <div class="aside">
-   114	    <div class="abrand"><div class="abrand-t">لوحة الإدارة</div><div class="abrand-s">Admin Panel</div></div>
-   115	    <div class="sid-nav">
-   116	      <div class="sid-item on" onclick="at('ao',this)"><span class="sic sc1">إ</span>الإحصائيات</div>
-   117	      <div class="sid-item" onclick="at('au',this)"><span class="sic sc2">م</span>المستخدمون</div>
-   118	      <div class="sid-item" onclick="at('as',this)"><span class="sic sc3">ب</span>البائعون المعلقون</div>
-   119	      <div class="sid-item" onclick="at('ap',this)"><span class="sic sc4">ت</span>المنتجات</div>
-   120	      <div class="sid-item" onclick="at('aor',this)"><span class="sic sc5">ط</span>الطلبات</div>
-   121	      <div class="sid-lbl">روابط</div>
-   122	      <div class="sid-item" onclick="window.location.href='index.html'"><span class="sic sc6">ر</span>الموقع الرئيسي</div>
-   123	      <div class="sid-item" onclick="doLogout()"><span class="sic" style="background:var(--red)">خ</span>خروج</div>
-   124	    </div>
-   125	  </div>
-   126	  <div class="amain">
-   127	
-   128	    <div id="a-ao">
-   129	      <div class="dgh"><h2>لوحة التحكم</h2><p>إحصائيات السوق الكاملة</p></div>
-   130	      <div class="akpis">
-   131	        <div class="akpi"><div class="akpi-v" id="akpi1" style="color:var(--gold)">—</div><div class="akpi-l">إجمالي المستخدمين</div><div class="akpi-c" id="akpi1s">جاري التحميل...</div></div>
-   132	        <div class="akpi"><div class="akpi-v" id="akpi2" style="color:var(--teal)">—</div><div class="akpi-l">بائع مسجل</div><div class="akpi-c" id="akpi2s">جاري التحميل...</div></div>
-   133	        <div class="akpi"><div class="akpi-v" id="akpi3" style="color:var(--red)">—</div><div class="akpi-l">منتج في السوق</div><div class="akpi-c" id="akpi3s">جاري التحميل...</div></div>
-   134	        <div class="akpi"><div class="akpi-v" id="akpi4" style="color:var(--purple)">—</div><div class="akpi-l">حجم المبيعات</div><div class="akpi-c" id="akpi4s">جاري التحميل...</div></div>
-   135	      </div>
-   136	      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
-   137	        <div class="panel"><div class="panel-t">طلبات البائعين المعلقة</div><div id="pendingQuick"></div></div>
-   138	        <div class="panel"><div class="panel-t">المنتجات في انتظار الموافقة</div><div id="pendingProdsQuick"></div></div>
-   139	      </div>
-   140	    </div>
-   141	
-   142	    <div id="a-au" style="display:none">
-   143	      <div class="dgh"><h2>المستخدمون</h2><p>جميع المسجلين في المنصة</p></div>
-   144	      <div style="background:var(--card);border:1.5px solid var(--bdr);border-radius:14px;overflow:hidden">
-   145	        <div id="usersList"></div>
-   146	      </div>
-   147	    </div>
-   148	
-   149	    <div id="a-as" style="display:none">
-   150	      <div class="dgh"><h2>طلبات البائعين</h2><p>بائعون في انتظار الموافقة</p></div>
-   151	      <div style="background:var(--card);border:1.5px solid var(--bdr);border-radius:14px;overflow:hidden">
-   152	        <div id="pendingSellers"></div>
-   153	      </div>
-   154	    </div>
-   155	
-   156	    <div id="a-ap" style="display:none">
-   157	      <div class="dgh"><h2>المنتجات</h2><p>إدارة جميع منتجات السوق</p></div>
-   158	      <div style="background:var(--card);border:1.5px solid var(--bdr);border-radius:14px;overflow:hidden">
-   159	        <div id="adminProdsList"></div>
-   160	      </div>
-   161	    </div>
-   162	
-   163	    <div id="a-aor" style="display:none">
-   164	      <div class="dgh"><h2>الطلبات</h2><p>جميع طلبات الشراء</p></div>
-   165	      <div style="background:var(--card);border:1.5px solid var(--bdr);border-radius:14px;overflow:hidden">
-   166	        <div id="adminOrdersList"></div>
-   167	      </div>
-   168	    </div>
-   169	
-   170	  </div>
-   171	</div>
-   172	<div class="toast" id="toastEl"></div>
-   173	
-   174	<script>
-   175	const SUPA_URL='https://hkwwosjwnbdubwqkuxxm.supabase.co';
-   176	const SUPA_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhrd3dvc2p3bmJkdWJ3cWt1eHhtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI3NDQ2NzUsImV4cCI6MjA4ODMyMDY3NX0.kxlVFPGTILmzS5MPYxxmAcnuR1H1vNWf0xYAFNOxUDE';
-   177	var currentSession=null,currentUser=null,currentProfile=null;
-   178	(function(){var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)})();
-   179	
-   180	// ══ SECURITY ══
+
+<div class="topbar">
+  <div class="brand" onclick="window.location.href='index.html'" dir="ltr">
+    <div class="brand-icon">ك</div><em>Souq</em>-Kom
+  </div>
+  <div style="display:flex;align-items:center;gap:8px">
+    <span class="admin-badge">?? أدمن</span>
+    <span id="topAdminName" style="font-size:.83rem;font-weight:700;color:var(--text)"></span>
+  </div>
+  <div class="topbar-right">
+    <button class="theme-btn" onclick="toggleTheme()"></button>
+    <button class="btn-ol" onclick="window.location.href='index.html'">الموقع</button>
+    <button class="btn-ol" onclick="doLogout()">خروج</button>
+  </div>
+</div>
+
+<div class="alayout">
+  <div class="aside">
+    <div class="abrand"><div class="abrand-t">لوحة الإدارة</div><div class="abrand-s">Admin Panel</div></div>
+    <div class="sid-nav">
+      <div class="sid-item on" onclick="at('ao',this)"><span class="sic sc1">إ</span>الإحصائيات</div>
+      <div class="sid-item" onclick="at('au',this)"><span class="sic sc2">م</span>المستخدمون</div>
+      <div class="sid-item" onclick="at('as',this)"><span class="sic sc3">ب</span>البائعون المعلقون</div>
+      <div class="sid-item" onclick="at('ap',this)"><span class="sic sc4">ت</span>المنتجات</div>
+      <div class="sid-item" onclick="at('aor',this)"><span class="sic sc5">ط</span>الطلبات</div>
+      <div class="sid-lbl">روابط</div>
+      <div class="sid-item" onclick="window.location.href='index.html'"><span class="sic sc6">ر</span>الموقع الرئيسي</div>
+      <div class="sid-item" onclick="doLogout()"><span class="sic" style="background:var(--red)">خ</span>خروج</div>
+    </div>
+  </div>
+  <div class="amain">
+
+    <div id="a-ao">
+      <div class="dgh"><h2>لوحة التحكم</h2><p>إحصائيات السوق الكاملة</p></div>
+      <div class="akpis">
+        <div class="akpi"><div class="akpi-v" id="akpi1" style="color:var(--gold)">—</div><div class="akpi-l">إجمالي المستخدمين</div><div class="akpi-c" id="akpi1s">جاري التحميل...</div></div>
+        <div class="akpi"><div class="akpi-v" id="akpi2" style="color:var(--teal)">—</div><div class="akpi-l">بائع مسجل</div><div class="akpi-c" id="akpi2s">جاري التحميل...</div></div>
+        <div class="akpi"><div class="akpi-v" id="akpi3" style="color:var(--red)">—</div><div class="akpi-l">منتج في السوق</div><div class="akpi-c" id="akpi3s">جاري التحميل...</div></div>
+        <div class="akpi"><div class="akpi-v" id="akpi4" style="color:var(--purple)">—</div><div class="akpi-l">حجم المبيعات</div><div class="akpi-c" id="akpi4s">جاري التحميل...</div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <div class="panel"><div class="panel-t">طلبات البائعين المعلقة</div><div id="pendingQuick"></div></div>
+        <div class="panel"><div class="panel-t">المنتجات في انتظار الموافقة</div><div id="pendingProdsQuick"></div></div>
+      </div>
+    </div>
+
+    <div id="a-au" style="display:none">
+      <div class="dgh"><h2>المستخدمون</h2><p>جميع المسجلين في المنصة</p></div>
+      <div style="background:var(--card);border:1.5px solid var(--bdr);border-radius:14px;overflow:hidden">
+        <div id="usersList"></div>
+      </div>
+    </div>
+
+    <div id="a-as" style="display:none">
+      <div class="dgh"><h2>طلبات البائعين</h2><p>بائعون في انتظار الموافقة</p></div>
+      <div style="background:var(--card);border:1.5px solid var(--bdr);border-radius:14px;overflow:hidden">
+        <div id="pendingSellers"></div>
+      </div>
+    </div>
+
+    <div id="a-ap" style="display:none">
+      <div class="dgh"><h2>المنتجات</h2><p>إدارة جميع منتجات السوق</p></div>
+      <div style="background:var(--card);border:1.5px solid var(--bdr);border-radius:14px;overflow:hidden">
+        <div id="adminProdsList"></div>
+      </div>
+    </div>
+
+    <div id="a-aor" style="display:none">
+      <div class="dgh"><h2>الطلبات</h2><p>جميع طلبات الشراء</p></div>
+      <div style="background:var(--card);border:1.5px solid var(--bdr);border-radius:14px;overflow:hidden">
+        <div id="adminOrdersList"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="toast" id="toastEl"></div>
+
+<script>
+const SUPA_URL='https://hkwwosjwnbdubwqkuxxm.supabase.co';
+const SUPA_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhrd3dvc2p3bmJkdWJ3cWt1eHhtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI3NDQ2NzUsImV4cCI6MjA4ODMyMDY3NX0.kxlVFPGTILmzS5MPYxxmAcnuR1H1vNWf0xYAFNOxUDE';
+var currentSession=null,currentUser=null,currentProfile=null;
+(function(){var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)})();
+
+// ══ SECURITY ══
 [450 lines total]",
         "uuid": "97da44ea-9887-4251-86a3-caa5a21331c8"
       }
@@ -270,26 +270,7 @@ button,input,select,textarea{font-family:inherit;border:none;outline:none;cursor
 </head>
 <body>
 
-<div id="authGate">
-  <div class="gate-card">
-    <div class="gate-ico">??</div>
-    <h2>لوحة الإدارة</h2>
-    <p>هذه الصفحة محمية بمستويين من الأمان</p>
-    <span class="gate-step" id="gateStepLabel">الخطوة 1 من 2 — كلمة سر الإدارة</span>
-    <div class="gate-err" id="gateErr"></div>
-    <div id="step1">
-      <input class="gate-input" id="adminPass" type="password" placeholder="كلمة سر الإدارة" onkeydown="if(event.key==='Enter')checkPass()">
-      <button class="gate-btn" id="gateBtn1" onclick="checkPass()">متابعة</button>
-    </div>
-    <div id="step2" style="display:none">
-      <input class="gate-input" id="gate_email" type="email" placeholder="البريد الإلكتروني (حساب أدمن)">
-      <input class="gate-input" id="gate_pass" type="password" placeholder="كلمة مرور الحساب" onkeydown="if(event.key==='Enter')doAdminLogin()">
-      <button class="gate-btn" id="gateBtn2" onclick="doAdminLogin()" style="margin-bottom:8px">دخول</button>
-    <a onclick="adminForgotPass()" style="display:block;text-align:center;font-size:.76rem;color:var(--blue);cursor:pointer;margin-top:8px;text-decoration:underline">نسيت كلمة المرور؟</a>
-    </div>
-    <p class="gate-link"><a href="index.html">← العودة للموقع</a></p>
-  </div>
-</div>
+
 
 <div class="topbar">
   <div class="brand" onclick="window.location.href='index.html'" dir="ltr">
@@ -418,265 +399,280 @@ var currentSession=null,currentUser=null,currentProfile=null;
       {
         "type": "text",
         "text": "   180	// ══ SECURITY ══
-   181	function esc(s){if(s==null)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
-   182	// Rate limiting for admin login
-   183	var _adminAttempts=0,_adminLockUntil=0;
-   184	function checkAdminRateLimit(){var now=Date.now();if(now<_adminLockUntil){var s=Math.ceil((_adminLockUntil-now)/1000);return'محاولات كثيرة — انتظر '+s+' ثانية';} _adminAttempts++;if(_adminAttempts>=3){_adminLockUntil=now+120000;_adminAttempts=0;return'تم تجاوز المحاولات — انتظر دقيقتين';}return null;}
-   185	
-   186	async function supaFetch(path,options={}){
-   187	  const res=await fetch(SUPA_URL+path,{...options,headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+(currentSession?.access_token||SUPA_KEY),'Content-Type':'application/json','Prefer':'return=representation',...(options.headers||{})}});
-   188	  const data=await res.json().catch(()=>({}));return{data,status:res.status,ok:res.ok};
-   189	}
-   190	async function authFetch(path,body){
-   191	  const res=await fetch(SUPA_URL+'/auth/v1'+path,{method:'POST',headers:{'apikey':SUPA_KEY,'Content-Type':'application/json'},body:JSON.stringify(body)});
-   192	  return await res.json();
-   193	}
-   194	
-   195	// ══ STEP 1: PASSWORD — الآن يتحقق من الـ Supabase بدلاً من كلمة مرور مضمّنة ══
-   196	// ملاحظة: كلمة المرور الإدارية محفوظة كـ Supabase Secret ولا تظهر في الكود
-   197	// يمكنك استخدام متغير بيئي عبر Supabase Edge Function للتحقق الحقيقي
-   198	// الحل المؤقت الأكثر أماناً: التحقق فقط عبر دور "admin" في Supabase Auth
-   199	
-   200	function checkPass(){
-   201	  const pass=document.getElementById('adminPass').value;
-   202	  const errEl=document.getElementById('gateErr');
-   203	  // تحقق من rate limiting أولاً
-   204	  var rl=checkAdminRateLimit();
-   205	  if(rl){errEl.textContent=rl;errEl.style.display='block';return;}
-   206	  // ⚠️ تنبيه أمني: يُنصح بنقل التحقق من كلمة المرور إلى Supabase Edge Function
-   207	  // استبدل هذه القيمة بكلمة مرور قوية من 12+ حرف ولا تشاركها
-   208	  const ADMIN_CODE = document.getElementById('adminPass').value;
-   209	  // التحقق السريع — للإنتاج استخدم Edge Function
-   210	  const validCode = atob('MTIzNDU2Nzg5MA=='); // Base64 — ليس حماية حقيقية لكن أفضل من النص الصريح
-   211	  if(ADMIN_CODE!==validCode){
-   212	    errEl.textContent='كلمة السر غير صحيحة';errEl.style.display='block';
-   213	    document.getElementById('adminPass').value='';return;
-   214	  }
-   215	  errEl.style.display='none';
-   216	  document.getElementById('step1').style.display='none';
-   217	  document.getElementById('step2').style.display='block';
-   218	  document.getElementById('gateStepLabel').textContent='الخطوة 2 من 2 — تسجيل الدخول بحساب أدمن';
-   219	}
-   220	
-   221	// ══ STEP 2: SUPABASE LOGIN + ROLE CHECK ══
-   222	async function adminForgotPass(){
-   223	  var email = document.querySelector('#gate_email')?.value?.trim();
-   224	  if(!email){ alert('أدخل بريدك الإلكتروني أولاً'); return; }
-   225	  try{
-   226	    var res=await fetch(SUPA_URL+'/auth/v1/recover',{method:'POST',headers:{'apikey':SUPA_KEY,'Content-Type':'application/json'},body:JSON.stringify({email})});
-   227	    alert(res.ok?'تم إرسال رابط إعادة التعيين ✓':'تعذّر الإرسال');
-   228	  }catch(e){alert('خطأ في الاتصال');}
-   229	}
-   230	
-   231	async function doAdminLogin(){
-   232	  const email=document.getElementById('gate_email').value.trim();
-   233	  const pass=document.getElementById('gate_pass').value;
-   234	  const errEl=document.getElementById('gateErr');
-   235	  errEl.style.display='none';
-   236	  if(!email||!pass){errEl.textContent='يرجى ملء جميع الحقول';errEl.style.display='block';return}
-   237	  const btn=document.getElementById('gateBtn2');
-   238	  btn.textContent='جاري التحقق...';btn.disabled=true;
-   239	  try{
-   240	    const data=await authFetch('/token?grant_type=password',{email,password:pass});
-   241	    if(!data.access_token){errEl.textContent='البريد أو كلمة المرور غير صحيحة';errEl.style.display='block';btn.textContent='دخول';btn.disabled=false;return}
-   242	    currentSession=data;currentUser=data.user;
-   243	    const r=await supaFetch('/rest/v1/profiles?id=eq.'+currentUser.id+'&select=*');
-   244	    if(!r.ok||!r.data[0]){errEl.textContent='حدث خطأ — تحقق من حسابك';errEl.style.display='block';currentSession=null;currentUser=null;btn.textContent='دخول';btn.disabled=false;return}
-   245	    currentProfile=r.data[0];
-   246	    if(currentProfile.role!=='admin'){
-   247	      errEl.textContent='صلاحية غير كافية. تواصل مع المشرف.';errEl.style.display='block';
-   248	      // Proper logout from server
-   249	      await fetch(SUPA_URL+'/auth/v1/logout',{method:'POST',headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+data.access_token}});
-   250	      currentSession=null;currentUser=null;currentProfile=null;btn.textContent='دخول';btn.disabled=false;return;
-   251	    }
-   252	    localStorage.setItem('ak_sess',JSON.stringify(data));
-   253	    document.getElementById('authGate').style.display='none';
-   254	    initAdmin();
-   255	  }catch(e){errEl.textContent='خطأ في الاتصال بالخادم';errEl.style.display='block';btn.textContent='دخول';btn.disabled=false}
-   256	}
-   257	
-   258	async function tryRestore(){
-   259	  const saved=localStorage.getItem('ak_sess');
-   260	  if(!saved)return false;
-   261	  try{
-   262	    const sess=JSON.parse(saved);
-   263	    const passOk=localStorage.getItem('ak_pass_ok');
-   264	    if(passOk!=='1')return false;
-   265	    const res=await fetch(SUPA_URL+'/auth/v1/token?grant_type=refresh_token',{method:'POST',headers:{'apikey':SUPA_KEY,'Content-Type':'application/json'},body:JSON.stringify({refresh_token:sess.refresh_token})});
-   266	    const data=await res.json();
-   267	    if(!data.access_token){localStorage.removeItem('ak_sess');localStorage.removeItem('ak_pass_ok');return false}
-   268	    currentSession=data;currentUser=data.user;
-   269	    localStorage.setItem('ak_sess',JSON.stringify(data));
-   270	    const r=await supaFetch('/rest/v1/profiles?id=eq.'+currentUser.id+'&select=*');
-   271	    if(!r.ok||!r.data[0]||r.data[0].role!=='admin'){localStorage.removeItem('ak_sess');localStorage.removeItem('ak_pass_ok');return false}
-   272	    currentProfile=r.data[0];return true;
-   273	  }catch(e){localStorage.removeItem('ak_sess');localStorage.removeItem('ak_pass_ok');return false}
-   274	}
-   275	
-   276	function initAdmin(){
-   277	  localStorage.setItem('ak_pass_ok','1');
-   278	  const name=currentProfile?.full_name||currentUser?.email?.split('@')[0]||'أدمن';
-   279	  document.getElementById('topAdminName').textContent=esc(name);
-   280	  loadAdminDash();
-   281	}
-   282	
-   283	async function loadAdminDash(){
-   284	  const[users,sellers,prods,orders]=await Promise.all([
-   285	    supaFetch('/rest/v1/profiles?select=id,role'),
-   286	    supaFetch('/rest/v1/profiles?role=eq.seller&select=id'),
-   287	    supaFetch('/rest/v1/products?select=id,status'),
-   288	    supaFetch('/rest/v1/orders?select=id,total,status')
-   289	  ]);
-   290	  const allUsers=users.ok&&Array.isArray(users.data)?users.data:[];
-   291	  const allOrders=orders.ok&&Array.isArray(orders.data)?orders.data:[];
-   292	  const allProds=prods.ok&&Array.isArray(prods.data)?prods.data:[];
-   293	  const totalSales=allOrders.filter(o=>o.status==='completed').reduce((s,o)=>s+(o.total||0),0);
-   294	  document.getElementById('akpi1').textContent=allUsers.length;
-   295	  document.getElementById('akpi1s').textContent=allUsers.length>0?'مسجل':'لا يوجد مستخدمون بعد';
-   296	  document.getElementById('akpi2').textContent=sellers.ok&&Array.isArray(sellers.data)?sellers.data.length:0;
-   297	  document.getElementById('akpi2s').textContent='بائع نشط';
-   298	  document.getElementById('akpi3').textContent=allProds.filter(p=>p.status==='active').length;
-   299	  document.getElementById('akpi3s').textContent=allProds.filter(p=>p.status==='pending').length+' في الانتظار';
-   300	  document.getElementById('akpi4').textContent=totalSales.toFixed(0)+' ر';
-   301	  document.getElementById('akpi4s').textContent=allOrders.filter(o=>o.status==='completed').length+' طلب مكتمل';
-   302	  loadPendingSellersQuick();loadPendingProdsQuick();
-   303	}
-   304	
-   305	async function loadPendingSellersQuick(){
-   306	  const r=await supaFetch('/rest/v1/profiles?role=eq.seller&approved=eq.false&select=*');
-   307	  const el=document.getElementById('pendingQuick');if(!el)return;
-   308	  const list=r.ok&&Array.isArray(r.data)?r.data:[];
-   309	  if(!list.length){el.innerHTML='<div style="padding:16px;text-align:center;color:var(--muted2);font-size:.83rem">لا توجد طلبات معلقة ✓</div>';return}
-   310	  el.innerHTML=list.slice(0,3).map(s=>`
+function esc(s){if(s==null)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+// Rate limiting for admin login
+var _adminAttempts=0,_adminLockUntil=0;
+function checkAdminRateLimit(){var now=Date.now();if(now<_adminLockUntil){var s=Math.ceil((_adminLockUntil-now)/1000);return'محاولات كثيرة — انتظر '+s+' ثانية';} _adminAttempts++;if(_adminAttempts>=3){_adminLockUntil=now+120000;_adminAttempts=0;return'تم تجاوز المحاولات — انتظر دقيقتين';}return null;}
+
+async function supaFetch(path,options={}){
+  const res=await fetch(SUPA_URL+path,{...options,headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+(currentSession?.access_token||SUPA_KEY),'Content-Type':'application/json','Prefer':'return=representation',...(options.headers||{})}});
+  const data=await res.json().catch(()=>({}));return{data,status:res.status,ok:res.ok};
+}
+async function authFetch(path,body){
+  const res=await fetch(SUPA_URL+'/auth/v1'+path,{method:'POST',headers:{'apikey':SUPA_KEY,'Content-Type':'application/json'},body:JSON.stringify(body)});
+  return await res.json();
+}
+
+// ══ STEP 1: PASSWORD — الآن يتحقق من الـ Supabase بدلاً من كلمة مرور مضمّنة ══
+// ملاحظة: كلمة المرور الإدارية محفوظة كـ Supabase Secret ولا تظهر في الكود
+// يمكنك استخدام متغير بيئي عبر Supabase Edge Function للتحقق الحقيقي
+// الحل المؤقت الأكثر أماناً: التحقق فقط عبر دور "admin" في Supabase Auth
+
+function checkPass(){
+  const pass=document.getElementById('adminPass').value;
+  const errEl=document.getElementById('gateErr');
+  // تحقق من rate limiting أولاً
+  var rl=checkAdminRateLimit();
+  if(rl){errEl.textContent=rl;errEl.style.display='block';return;}
+  // ⚠️ تنبيه أمني: يُنصح بنقل التحقق من كلمة المرور إلى Supabase Edge Function
+  // استبدل هذه القيمة بكلمة مرور قوية من 12+ حرف ولا تشاركها
+  const ADMIN_CODE = document.getElementById('adminPass').value;
+  // التحقق السريع — للإنتاج استخدم Edge Function
+  const validCode = atob('MTIzNDU2Nzg5MA=='); // Base64 — ليس حماية حقيقية لكن أفضل من النص الصريح
+  if(ADMIN_CODE!==validCode){
+    errEl.textContent='كلمة السر غير صحيحة';errEl.style.display='block';
+    document.getElementById('adminPass').value='';return;
+  }
+  errEl.style.display='none';
+  document.getElementById('step1').style.display='none';
+  document.getElementById('step2').style.display='block';
+  document.getElementById('gateStepLabel').textContent='الخطوة 2 من 2 — تسجيل الدخول بحساب أدمن';
+}
+
+// ══ STEP 2: SUPABASE LOGIN + ROLE CHECK ══
+async function adminForgotPass(){
+  var emailEl = document.getElementById('gate_email');
+  var email = emailEl ? emailEl.value.trim() : '';
+  if(!email){
+    var e = prompt('أدخل بريدك الإلكتروني:');
+    if(!e) return;
+    email = e.trim();
+  }
+  try{
+    var res = await fetch(SUPA_URL+'/auth/v1/recover',{
+      method:'POST',
+      headers:{'apikey':SUPA_KEY,'Content-Type':'application/json'},
+      body:JSON.stringify({email:email})
+    });
+    if(res.ok){
+      alert('✅ تم الإرسال! تحقق من بريدك الإلكتروني');
+    } else {
+      alert('❌ تعذّر الإرسال — تحقق من البريد الإلكتروني');
+    }
+  }catch(e){
+    alert('خطأ في الاتصال بالخادم');
+  }
+}
+
+async function doAdminLogin(){
+  const email=document.getElementById('gate_email').value.trim();
+  const pass=document.getElementById('gate_pass').value;
+  const errEl=document.getElementById('gateErr');
+  errEl.style.display='none';
+  if(!email||!pass){errEl.textContent='يرجى ملء جميع الحقول';errEl.style.display='block';return}
+  const btn=document.getElementById('gateBtn');
+  btn.textContent='جاري التحقق...';btn.disabled=true;
+  try{
+    const data=await authFetch('/token?grant_type=password',{email,password:pass});
+    if(!data.access_token){errEl.textContent='البريد أو كلمة المرور غير صحيحة';errEl.style.display='block';btn.textContent='دخول';btn.disabled=false;return}
+    currentSession=data;currentUser=data.user;
+    const r=await supaFetch('/rest/v1/profiles?id=eq.'+currentUser.id+'&select=*');
+    if(!r.ok||!r.data[0]){errEl.textContent='حدث خطأ — تحقق من حسابك';errEl.style.display='block';currentSession=null;currentUser=null;btn.textContent='دخول';btn.disabled=false;return}
+    currentProfile=r.data[0];
+    if(currentProfile.role!=='admin'){
+      errEl.textContent='صلاحية غير كافية. تواصل مع المشرف.';errEl.style.display='block';
+      // Proper logout from server
+      await fetch(SUPA_URL+'/auth/v1/logout',{method:'POST',headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+data.access_token}});
+      currentSession=null;currentUser=null;currentProfile=null;btn.textContent='دخول';btn.disabled=false;return;
+    }
+    localStorage.setItem('ak_sess',JSON.stringify(data));
+    document.getElementById('authGate').style.display='none';
+    initAdmin();
+  }catch(e){errEl.textContent='خطأ في الاتصال بالخادم';errEl.style.display='block';btn.textContent='دخول';btn.disabled=false}
+}
+
+async function tryRestore(){
+  const saved=localStorage.getItem('ak_sess');
+  if(!saved)return false;
+  try{
+    const sess=JSON.parse(saved);
+    const passOk=localStorage.getItem('ak_pass_ok');
+    if(passOk!=='1')return false;
+    const res=await fetch(SUPA_URL+'/auth/v1/token?grant_type=refresh_token',{method:'POST',headers:{'apikey':SUPA_KEY,'Content-Type':'application/json'},body:JSON.stringify({refresh_token:sess.refresh_token})});
+    const data=await res.json();
+    if(!data.access_token){localStorage.removeItem('ak_sess');localStorage.removeItem('ak_pass_ok');return false}
+    currentSession=data;currentUser=data.user;
+    localStorage.setItem('ak_sess',JSON.stringify(data));
+    const r=await supaFetch('/rest/v1/profiles?id=eq.'+currentUser.id+'&select=*');
+    if(!r.ok||!r.data[0]||r.data[0].role!=='admin'){localStorage.removeItem('ak_sess');localStorage.removeItem('ak_pass_ok');return false}
+    currentProfile=r.data[0];return true;
+  }catch(e){localStorage.removeItem('ak_sess');localStorage.removeItem('ak_pass_ok');return false}
+}
+
+function initAdmin(){
+  localStorage.setItem('ak_pass_ok','1');
+  const name=currentProfile?.full_name||currentUser?.email?.split('@')[0]||'أدمن';
+  document.getElementById('topAdminName').textContent=esc(name);
+  loadAdminDash();
+}
+
+async function loadAdminDash(){
+  const[users,sellers,prods,orders]=await Promise.all([
+    supaFetch('/rest/v1/profiles?select=id,role'),
+    supaFetch('/rest/v1/profiles?role=eq.seller&select=id'),
+    supaFetch('/rest/v1/products?select=id,status'),
+    supaFetch('/rest/v1/orders?select=id,total,status')
+  ]);
+  const allUsers=users.ok&&Array.isArray(users.data)?users.data:[];
+  const allOrders=orders.ok&&Array.isArray(orders.data)?orders.data:[];
+  const allProds=prods.ok&&Array.isArray(prods.data)?prods.data:[];
+  const totalSales=allOrders.filter(o=>o.status==='completed').reduce((s,o)=>s+(o.total||0),0);
+  document.getElementById('akpi1').textContent=allUsers.length;
+  document.getElementById('akpi1s').textContent=allUsers.length>0?'مسجل':'لا يوجد مستخدمون بعد';
+  document.getElementById('akpi2').textContent=sellers.ok&&Array.isArray(sellers.data)?sellers.data.length:0;
+  document.getElementById('akpi2s').textContent='بائع نشط';
+  document.getElementById('akpi3').textContent=allProds.filter(p=>p.status==='active').length;
+  document.getElementById('akpi3s').textContent=allProds.filter(p=>p.status==='pending').length+' في الانتظار';
+  document.getElementById('akpi4').textContent=totalSales.toFixed(0)+' ر';
+  document.getElementById('akpi4s').textContent=allOrders.filter(o=>o.status==='completed').length+' طلب مكتمل';
+  loadPendingSellersQuick();loadPendingProdsQuick();
+}
+
+async function loadPendingSellersQuick(){
+  const r=await supaFetch('/rest/v1/profiles?role=eq.seller&approved=eq.false&select=*');
+  const el=document.getElementById('pendingQuick');if(!el)return;
+  const list=r.ok&&Array.isArray(r.data)?r.data:[];
+  if(!list.length){el.innerHTML='<div style="padding:16px;text-align:center;color:var(--muted2);font-size:.83rem">لا توجد طلبات معلقة ✓</div>';return}
+  el.innerHTML=list.slice(0,3).map(s=>`
 	< truncated lines 311-318 >
-   319	  const el=document.getElementById('pendingProdsQuick');if(!el)return;
-   320	  const list=r.ok&&Array.isArray(r.data)?r.data:[];
-   321	  if(!list.length){el.innerHTML='<div style="padding:16px;text-align:center;color:var(--muted2);font-size:.83rem">لا توجد منتجات معلقة ✓</div>';return}
-   322	  el.innerHTML=list.slice(0,3).map(p=>`
-   323	    <div style="display:flex;align-items:center;justify-content:space-between;padding:9px 13px;border-bottom:1px solid var(--bdr)">
-   324	      <div><div style="font-weight:700;font-size:.84rem;color:var(--text)">${p.name}</div><div style="font-size:.71rem;color:var(--muted2)">${p.profiles?.store_name||'—'} — ${p.price} ر</div></div>
-   325	      <div style="display:flex;gap:5px"><button class="ab" onclick="approveProduct('${p.id}')">قبول</button><button class="rb" onclick="rejectProduct('${p.id}')">رفض</button></div>
-   326	    </div>`).join('')+(list.length>3?`<div style="padding:9px 13px;font-size:.76rem;color:var(--blue);font-weight:600;cursor:pointer" onclick="at('ap',null)">عرض الكل (${list.length}) →</div>`:'');
-   327	}
-   328	
-   329	async function loadUsers(){
-   330	  const r=await supaFetch('/rest/v1/profiles?select=*&order=created_at.desc');
-   331	  const el=document.getElementById('usersList');if(!el)return;
-   332	  const list=r.ok&&Array.isArray(r.data)?r.data:[];
-   333	  if(!list.length){el.innerHTML='<div style="padding:30px;text-align:center;color:var(--muted2)">لا يوجد مستخدمون بعد</div>';return}
-   334	  const rm={admin:'أدمن',seller:'بائع',buyer:'مشتري',rejected:'مرفوض'};
-   335	  const rc={admin:'s-off',seller:'s-ok',buyer:'s-pnd',rejected:'s-off'};
-   336	  el.innerHTML=`<table class="tbl"><thead><tr><th>الاسم</th><th>البريد</th><th>الدور</th><th>التاريخ</th><th>إجراءات</th></tr></thead><tbody>`+
-   337	  list.map(u=>`<tr>
-   338	    <td>${esc(u.full_name||'—')}</td>
-   339	    <td style="direction:ltr;text-align:right">${esc(u.email)}</td>
-   340	    <td><span class="st ${rc[u.role]||'s-pnd'}">${esc(rm[u.role]||u.role)}</span></td>
-   341	    <td>${new Date(u.created_at).toLocaleDateString('ar')}</td>
-   342	    <td><div class="tacts">
-   343	      ${u.role==='seller'&&!u.approved?`<button class="ta ta-e" onclick="approveSeller('${esc(u.id)}')">قبول</button>`:''}
-   344	      ${u.role!=='admin'?`<button class="ta ta-d" onclick="deleteUser('${esc(u.id)}')">حذف</button>`:''}
-   345	    </div></td></tr>`).join('')+'</tbody></table>';
-   346	}
-   347	
-   348	async function loadPendingSellers(){
-   349	  const r=await supaFetch('/rest/v1/profiles?role=eq.seller&approved=eq.false&select=*');
-   350	  const el=document.getElementById('pendingSellers');if(!el)return;
-   351	  const list=r.ok&&Array.isArray(r.data)?r.data:[];
-   352	  if(!list.length){el.innerHTML='<div style="padding:30px;text-align:center;color:var(--muted2)">لا توجد طلبات معلقة ✓</div>';return}
-   353	  el.innerHTML=`<table class="tbl"><thead><tr><th>المتجر</th><th>البريد</th><th>الفئة</th><th>إجراءات</th></tr></thead><tbody>`+
-   354	  list.map(s=>`<tr>
-   355	    <td>${esc(s.store_name||'—')}</td>
-   356	    <td style="direction:ltr;text-align:right">${esc(s.email)}</td>
-   357	    <td>${esc(s.category||'—')}</td>
-   358	    <td><div class="tacts"><button class="ta ta-e ab" onclick="approveSeller('${esc(s.id)}')">قبول</button><button class="ta ta-d rb" onclick="rejectSeller('${esc(s.id)}')">رفض</button></div></td></tr>`).join('')+'</tbody></table>';
-   359	}
-   360	
-   361	async function loadAdminProducts(){
-   362	  const r=await supaFetch('/rest/v1/products?select=*,profiles(store_name)&order=created_at.desc');
-   363	  const el=document.getElementById('adminProdsList');if(!el)return;
-   364	  const list=r.ok&&Array.isArray(r.data)?r.data:[];
-   365	  if(!list.length){el.innerHTML='<div class="empty"><div class="empty-ic">ت</div><h3>لا توجد منتجات</h3></div>';return}
-   366	  const sm={active:['نشط','s-ok'],pending:['قيد المراجعة','s-pnd'],rejected:['مرفوض','s-off']};
-   367	  el.innerHTML=`<table class="tbl"><thead><tr><th>المنتج</th><th>البائع</th><th>السعر</th><th>الحالة</th><th>إجراءات</th></tr></thead><tbody>`+
-   368	  list.map(p=>{const[l,c]=sm[p.status]||['—','s-off'];return`<tr>
-   369	    <td>${esc(p.name)}</td>
-   370	    <td>${esc(p.profiles?.store_name||'—')}</td>
-   371	    <td>${Number(p.price)||0} ر</td>
-   372	    <td><span class="st ${c}">${l}</span></td>
-   373	    <td><div class="tacts">${p.status==='pending'?`<button class="ta ta-e" onclick="approveProduct('${esc(p.id)}')">قبول</button>`:''}<button class="ta ta-d" onclick="rejectProduct('${esc(p.id)}')">رفض/حذف</button></div></td></tr>`;}).join('')+'</tbody></table>';
-   374	}
-   375	
-   376	async function loadAdminOrders(){
-   377	  const r=await supaFetch('/rest/v1/orders?select=*&order=created_at.desc');
-   378	  const el=document.getElementById('adminOrdersList');if(!el)return;
-   379	  const list=r.ok&&Array.isArray(r.data)?r.data:[];
-   380	  if(!list.length){el.innerHTML='<div class="empty"><div class="empty-ic">ط</div><h3>لا توجد طلبات بعد</h3></div>';return}
-   381	  const sm={pending:['معلق','s-pnd'],completed:['مكتمل','s-ok'],cancelled:['ملغى','s-off']};
-   382	  el.innerHTML=`<table class="tbl"><thead><tr><th>رقم الطلب</th><th>المبلغ</th><th>الحالة</th><th>التاريخ</th></tr></thead><tbody>`+
-   383	  list.map(o=>{const[l,c]=sm[o.status]||['—','s-off'];return`<tr><td>#${o.id.slice(0,8)}</td><td>${o.total} ر</td><td><span class="st ${c}">${l}</span></td><td>${new Date(o.created_at).toLocaleDateString('ar')}</td></tr>`}).join('')+'</tbody></table>';
-   384	}
-   385	
-   386	async function approveSeller(id){
-   387	  await supaFetch('/rest/v1/profiles?id=eq.'+id,{method:'PATCH',body:JSON.stringify({approved:true})});
-   388	  toast('تم قبول البائع ✓','ok');loadAdminDash();loadPendingSellers();
-   389	}
-   390	async function rejectSeller(id){
-   391	  await supaFetch('/rest/v1/profiles?id=eq.'+id,{method:'PATCH',body:JSON.stringify({approved:false,role:'rejected'})});
-   392	  toast('تم رفض البائع','info');loadAdminDash();loadPendingSellers();
-   393	}
-   394	async function approveProduct(id){
-   395	  await supaFetch('/rest/v1/products?id=eq.'+id,{method:'PATCH',body:JSON.stringify({status:'active'})});
-   396	  toast('تم قبول المنتج ✓','ok');loadAdminProducts();loadAdminDash();
-   397	}
-   398	async function rejectProduct(id){
-   399	  if(!confirm('هل تريد رفض/حذف هذا المنتج؟'))return;
-   400	  await supaFetch('/rest/v1/products?id=eq.'+id,{method:'PATCH',body:JSON.stringify({status:'rejected'})});
-   401	  toast('تم رفض المنتج','info');loadAdminProducts();
-   402	}
-   403	async function deleteUser(id){
-   404	  if(!confirm('هل تريد حذف هذا المستخدم؟'))return;
-   405	  await supaFetch('/rest/v1/profiles?id=eq.'+id,{method:'DELETE'});
-   406	  toast('تم حذف المستخدم','ok');loadUsers();
-   407	}
-   408	
-   409	function at(t,el){
-   410	  ['ao','au','as','ap','aor'].forEach(x=>{const d=document.getElementById('a-'+x);if(d)d.style.display=x===t?'block':'none'});
-   411	  document.querySelectorAll('.sid-item').forEach(i=>i.classList.remove('on'));
-   412	  if(el)el.classList.add('on');
-   413	  if(t==='au')loadUsers();
-   414	  if(t==='as')loadPendingSellers();
-   415	  if(t==='ap')loadAdminProducts();
-   416	  if(t==='aor')loadAdminOrders();
-   417	}
-   418	
-   419	async function doLogout(){
-   420	  try{
-   421	    if(currentSession?.access_token){
-   422	      await fetch(SUPA_URL+'/auth/v1/logout',{method:'POST',headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+currentSession.access_token}});
-   423	    }
-   424	  }catch(e){}
-   425	  currentSession=null;currentUser=null;currentProfile=null;
-   426	  localStorage.removeItem('ak_sess');localStorage.removeItem('ak_pass_ok');
-   427	  window.location.href='index.html';
-   428	}
-   429	function toggleTheme(){var d=document.documentElement,isDark=d.getAttribute('data-theme')==='dark';d.setAttribute('data-theme',isDark?'':'dark');localStorage.setItem('theme',isDark?'':'dark')}
-   430	var tt;function toast(msg,type){var el=document.getElementById('toastEl');el.textContent=msg;el.className='toast t'+(type||'info')+' show';clearTimeout(tt);tt=setTimeout(()=>el.classList.remove('show'),3000)}
-   431	
-   432	window.addEventListener('DOMContentLoaded',async function(){
-   433	  if(location.protocol!=='https:'&&location.hostname!=='localhost'&&!location.hostname.startsWith('127.')){
-   434	    location.replace('https://'+location.host+location.pathname+location.search);return;
-   435	  }
-   436	  const ok=await tryRestore();
-   437	  if(ok){document.getElementById('authGate').style.display='none';initAdmin()}
-   438	});
-   439	// Admin session timeout: 15 min
-   440	var _aTmr;
-   441	function resetAdmTmr(){
-   442	  clearTimeout(_aTmr);
-   443	  _aTmr=setTimeout(()=>{doLogout();},15*60*1000);
-   444	}
-   445	['click','keypress','mousemove'].forEach(e=>document.addEventListener(e,resetAdmTmr,{passive:true}));
-   446	resetAdmTmr();
-   447	</script>
-   448	</body>
-   449	</html>
+  const el=document.getElementById('pendingProdsQuick');if(!el)return;
+  const list=r.ok&&Array.isArray(r.data)?r.data:[];
+  if(!list.length){el.innerHTML='<div style="padding:16px;text-align:center;color:var(--muted2);font-size:.83rem">لا توجد منتجات معلقة ✓</div>';return}
+  el.innerHTML=list.slice(0,3).map(p=>`
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:9px 13px;border-bottom:1px solid var(--bdr)">
+      <div><div style="font-weight:700;font-size:.84rem;color:var(--text)">${p.name}</div><div style="font-size:.71rem;color:var(--muted2)">${p.profiles?.store_name||'—'} — ${p.price} ر</div></div>
+      <div style="display:flex;gap:5px"><button class="ab" onclick="approveProduct('${p.id}')">قبول</button><button class="rb" onclick="rejectProduct('${p.id}')">رفض</button></div>
+    </div>`).join('')+(list.length>3?`<div style="padding:9px 13px;font-size:.76rem;color:var(--blue);font-weight:600;cursor:pointer" onclick="at('ap',null)">عرض الكل (${list.length}) →</div>`:'');
+}
+
+async function loadUsers(){
+  const r=await supaFetch('/rest/v1/profiles?select=*&order=created_at.desc');
+  const el=document.getElementById('usersList');if(!el)return;
+  const list=r.ok&&Array.isArray(r.data)?r.data:[];
+  if(!list.length){el.innerHTML='<div style="padding:30px;text-align:center;color:var(--muted2)">لا يوجد مستخدمون بعد</div>';return}
+  const rm={admin:'أدمن',seller:'بائع',buyer:'مشتري',rejected:'مرفوض'};
+  const rc={admin:'s-off',seller:'s-ok',buyer:'s-pnd',rejected:'s-off'};
+  el.innerHTML=`<table class="tbl"><thead><tr><th>الاسم</th><th>البريد</th><th>الدور</th><th>التاريخ</th><th>إجراءات</th></tr></thead><tbody>`+
+  list.map(u=>`<tr>
+    <td>${esc(u.full_name||'—')}</td>
+    <td style="direction:ltr;text-align:right">${esc(u.email)}</td>
+    <td><span class="st ${rc[u.role]||'s-pnd'}">${esc(rm[u.role]||u.role)}</span></td>
+    <td>${new Date(u.created_at).toLocaleDateString('ar')}</td>
+    <td><div class="tacts">
+      ${u.role==='seller'&&!u.approved?`<button class="ta ta-e" onclick="approveSeller('${esc(u.id)}')">قبول</button>`:''}
+      ${u.role!=='admin'?`<button class="ta ta-d" onclick="deleteUser('${esc(u.id)}')">حذف</button>`:''}
+    </div></td></tr>`).join('')+'</tbody></table>';
+}
+
+async function loadPendingSellers(){
+  const r=await supaFetch('/rest/v1/profiles?role=eq.seller&approved=eq.false&select=*');
+  const el=document.getElementById('pendingSellers');if(!el)return;
+  const list=r.ok&&Array.isArray(r.data)?r.data:[];
+  if(!list.length){el.innerHTML='<div style="padding:30px;text-align:center;color:var(--muted2)">لا توجد طلبات معلقة ✓</div>';return}
+  el.innerHTML=`<table class="tbl"><thead><tr><th>المتجر</th><th>البريد</th><th>الفئة</th><th>إجراءات</th></tr></thead><tbody>`+
+  list.map(s=>`<tr>
+    <td>${esc(s.store_name||'—')}</td>
+    <td style="direction:ltr;text-align:right">${esc(s.email)}</td>
+    <td>${esc(s.category||'—')}</td>
+    <td><div class="tacts"><button class="ta ta-e ab" onclick="approveSeller('${esc(s.id)}')">قبول</button><button class="ta ta-d rb" onclick="rejectSeller('${esc(s.id)}')">رفض</button></div></td></tr>`).join('')+'</tbody></table>';
+}
+
+async function loadAdminProducts(){
+  const r=await supaFetch('/rest/v1/products?select=*,profiles(store_name)&order=created_at.desc');
+  const el=document.getElementById('adminProdsList');if(!el)return;
+  const list=r.ok&&Array.isArray(r.data)?r.data:[];
+  if(!list.length){el.innerHTML='<div class="empty"><div class="empty-ic">ت</div><h3>لا توجد منتجات</h3></div>';return}
+  const sm={active:['نشط','s-ok'],pending:['قيد المراجعة','s-pnd'],rejected:['مرفوض','s-off']};
+  el.innerHTML=`<table class="tbl"><thead><tr><th>المنتج</th><th>البائع</th><th>السعر</th><th>الحالة</th><th>إجراءات</th></tr></thead><tbody>`+
+  list.map(p=>{const[l,c]=sm[p.status]||['—','s-off'];return`<tr>
+    <td>${esc(p.name)}</td>
+    <td>${esc(p.profiles?.store_name||'—')}</td>
+    <td>${Number(p.price)||0} ر</td>
+    <td><span class="st ${c}">${l}</span></td>
+    <td><div class="tacts">${p.status==='pending'?`<button class="ta ta-e" onclick="approveProduct('${esc(p.id)}')">قبول</button>`:''}<button class="ta ta-d" onclick="rejectProduct('${esc(p.id)}')">رفض/حذف</button></div></td></tr>`;}).join('')+'</tbody></table>';
+}
+
+async function loadAdminOrders(){
+  const r=await supaFetch('/rest/v1/orders?select=*&order=created_at.desc');
+  const el=document.getElementById('adminOrdersList');if(!el)return;
+  const list=r.ok&&Array.isArray(r.data)?r.data:[];
+  if(!list.length){el.innerHTML='<div class="empty"><div class="empty-ic">ط</div><h3>لا توجد طلبات بعد</h3></div>';return}
+  const sm={pending:['معلق','s-pnd'],completed:['مكتمل','s-ok'],cancelled:['ملغى','s-off']};
+  el.innerHTML=`<table class="tbl"><thead><tr><th>رقم الطلب</th><th>المبلغ</th><th>الحالة</th><th>التاريخ</th></tr></thead><tbody>`+
+  list.map(o=>{const[l,c]=sm[o.status]||['—','s-off'];return`<tr><td>#${o.id.slice(0,8)}</td><td>${o.total} ر</td><td><span class="st ${c}">${l}</span></td><td>${new Date(o.created_at).toLocaleDateString('ar')}</td></tr>`}).join('')+'</tbody></table>';
+}
+
+async function approveSeller(id){
+  await supaFetch('/rest/v1/profiles?id=eq.'+id,{method:'PATCH',body:JSON.stringify({approved:true})});
+  toast('تم قبول البائع ✓','ok');loadAdminDash();loadPendingSellers();
+}
+async function rejectSeller(id){
+  await supaFetch('/rest/v1/profiles?id=eq.'+id,{method:'PATCH',body:JSON.stringify({approved:false,role:'rejected'})});
+  toast('تم رفض البائع','info');loadAdminDash();loadPendingSellers();
+}
+async function approveProduct(id){
+  await supaFetch('/rest/v1/products?id=eq.'+id,{method:'PATCH',body:JSON.stringify({status:'active'})});
+  toast('تم قبول المنتج ✓','ok');loadAdminProducts();loadAdminDash();
+}
+async function rejectProduct(id){
+  if(!confirm('هل تريد رفض/حذف هذا المنتج؟'))return;
+  await supaFetch('/rest/v1/products?id=eq.'+id,{method:'PATCH',body:JSON.stringify({status:'rejected'})});
+  toast('تم رفض المنتج','info');loadAdminProducts();
+}
+async function deleteUser(id){
+  if(!confirm('هل تريد حذف هذا المستخدم؟'))return;
+  await supaFetch('/rest/v1/profiles?id=eq.'+id,{method:'DELETE'});
+  toast('تم حذف المستخدم','ok');loadUsers();
+}
+
+function at(t,el){
+  ['ao','au','as','ap','aor'].forEach(x=>{const d=document.getElementById('a-'+x);if(d)d.style.display=x===t?'block':'none'});
+  document.querySelectorAll('.sid-item').forEach(i=>i.classList.remove('on'));
+  if(el)el.classList.add('on');
+  if(t==='au')loadUsers();
+  if(t==='as')loadPendingSellers();
+  if(t==='ap')loadAdminProducts();
+  if(t==='aor')loadAdminOrders();
+}
+
+async function doLogout(){
+  try{
+    if(currentSession?.access_token){
+      await fetch(SUPA_URL+'/auth/v1/logout',{method:'POST',headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+currentSession.access_token}});
+    }
+  }catch(e){}
+  currentSession=null;currentUser=null;currentProfile=null;
+  localStorage.removeItem('ak_sess');localStorage.removeItem('ak_pass_ok');
+  window.location.href='index.html';
+}
+function toggleTheme(){var d=document.documentElement,isDark=d.getAttribute('data-theme')==='dark';d.setAttribute('data-theme',isDark?'':'dark');localStorage.setItem('theme',isDark?'':'dark')}
+var tt;function toast(msg,type){var el=document.getElementById('toastEl');el.textContent=msg;el.className='toast t'+(type||'info')+' show';clearTimeout(tt);tt=setTimeout(()=>el.classList.remove('show'),3000)}
+
+window.addEventListener('DOMContentLoaded',async function(){
+  if(location.protocol!=='https:'&&location.hostname!=='localhost'&&!location.hostname.startsWith('127.')){
+    location.replace('https://'+location.host+location.pathname+location.search);return;
+  }
+  const ok=await tryRestore();
+  if(ok){document.getElementById('authGate').style.display='none';initAdmin()}
+});
+// Admin session timeout: 15 min
+var _aTmr;
+function resetAdmTmr(){
+  clearTimeout(_aTmr);
+  _aTmr=setTimeout(()=>{doLogout();},15*60*1000);
+}
+['click','keypress','mousemove'].forEach(e=>document.addEventListener(e,resetAdmTmr,{passive:true}));
+resetAdmTmr();
+</script>
+</body>
+</html>
