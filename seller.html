@@ -356,7 +356,7 @@ window.DOMPurify={sanitize:function(s){
 </div>
 
 <!-- ══ AUTH GATE ══ -->
-<div id="gate">
+<div id="gate" style="display:none">
   <div class="gate-box">
     <div class="gate-logo">
       <div class="gate-ico" style="background:linear-gradient(135deg,#0ea5e9,#0f766e);border-radius:14px;width:52px;height:52px;display:flex;align-items:center;justify-content:center;font-family:Cairo,sans-serif;font-weight:900;font-size:28px;color:#fff">S</div>
@@ -957,12 +957,12 @@ async function login(){
     if(r.status===500||r.status===401||r.status===403){gErr('خطأ RLS ('+r.status+'): شغّل SQL في Supabase');btn.textContent='تسجيل الدخول';btn.disabled=false;return}
     // إنشاء profile إذا لم يكن موجوداً
     if(!r.data||!r.data[0]){
-      let up=await sf('/rest/v1/profiles',{method:'POST',headers:{'Prefer':'return=representation,resolution=merge-duplicates'},body:JSON.stringify({id:user.id,email:user.email,role:'buyer',created_at:new Date().toISOString()})});
+      let up=await sf('/rest/v1/profiles',{method:'POST',headers:{'Prefer':'return=representation,resolution=merge-duplicates'},body:JSON.stringify({id:user.id,email:user.email,role:'seller',approved:false,created_at:new Date().toISOString()})});
       if(!up.ok||!up.data||!up.data[0]){gErr('تعذر إنشاء الملف الشخصي — تحقق من RLS على جدول profiles');btn.textContent='تسجيل الدخول';btn.disabled=false;return}
       prof=up.data[0];
     } else { prof=r.data[0]; }
-    prof=r.data[0];
     if(prof.role!=='seller'&&prof.role!=='admin'){gErr('هذا الحساب ليس حساب بائع (role='+prof.role+')');btn.textContent='تسجيل الدخول';btn.disabled=false;return}
+    if(prof.role==='seller'&&!prof.approved){gErr('حسابك قيد المراجعة — انتظر موافقة الإدارة');btn.textContent='تسجيل الدخول';btn.disabled=false;return}
     resetSellerAttempts();
     localStorage.setItem('sk_sess',JSON.stringify(data));
     document.getElementById('gate').style.display='none';
@@ -982,7 +982,7 @@ async function restore(){
     if(!pr.ok){localStorage.removeItem('sk_sess');return false}
     // إذا profile غير موجود، أنشئه
     if(!pr.data||!pr.data[0]){
-      let up=await sf('/rest/v1/profiles',{method:'POST',headers:{'Prefer':'return=representation,resolution=merge-duplicates'},body:JSON.stringify({id:user.id,email:user.email,role:'buyer',created_at:new Date().toISOString()})});
+      let up=await sf('/rest/v1/profiles',{method:'POST',headers:{'Prefer':'return=representation,resolution=merge-duplicates'},body:JSON.stringify({id:user.id,email:user.email,role:'seller',approved:false,created_at:new Date().toISOString()})});
       if(!up.ok||!up.data||!up.data[0]){localStorage.removeItem('sk_sess');return false}
       prof=up.data[0];
     } else { prof=pr.data[0]; }
