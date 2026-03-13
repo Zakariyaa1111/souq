@@ -954,13 +954,14 @@ body[data-theme="dark"] .hero-illustration{
 
 /* ══ HAMBURGER (يعمل على الجهازين) ══ */
 .hamburger-btn{
-  display:flex;flex-direction:column;align-items:center;
+  display:none;flex-direction:column;align-items:center;
   justify-content:center;gap:5px;
   width:42px;height:42px;border-radius:11px;
   background:var(--light);border:1.5px solid var(--bdr);
   cursor:pointer;flex-shrink:0;
   transition:background .2s,border-color .2s;
 }
+@media(max-width:700px){.hamburger-btn{display:flex}.nav-right{display:none!important}}
 .hamburger-btn:hover{background:var(--bdr);border-color:var(--blue)}
 .hamburger-btn span{
   display:block;width:18px;height:2px;
@@ -978,14 +979,18 @@ body[data-theme="dark"] .hero-illustration{
   .mob-drawer.on{transform:translateX(0)}
 }
 
-/* ══ HAMBURGER (desktop + mobile) ══ */
+/* ══ HAMBURGER (mobile only) ══ */
 .hamburger-btn{
-  display:flex;flex-direction:column;align-items:center;
+  display:none;flex-direction:column;align-items:center;
   justify-content:center;gap:5px;
   width:42px;height:42px;border-radius:11px;
   background:var(--light);border:1.5px solid var(--bdr);
   cursor:pointer;flex-shrink:0;
   transition:background .2s,border-color .2s;
+}
+@media(max-width:700px){
+  .hamburger-btn{display:flex}
+  .nav-right{display:none!important}
 }
 .hamburger-btn:hover{background:var(--bdr);border-color:var(--blue)}
 .hamburger-btn span{
@@ -1154,7 +1159,23 @@ async function submitRating() {
     <button class="nb" onclick="goSeller()">لوحة البائع</button>
   </div>
   <div style="flex:1"></div>
-  <span id="cN" style="display:none">0</span>
+  <div class="nav-right">
+    <div class="theme-btn" onclick="toggleTheme()">
+      <span class="theme-icon sun">☀</span>
+      <span class="theme-icon moon">🌙</span>
+    </div>
+    <button class="btn-cart" onclick="gp('cart')">
+      <span class="cart-ic">🛒</span>
+      <span class="cart-n" id="cN">0</span>
+    </button>
+    <button class="btn-ol" id="topLoginBtn" onclick="gp('login')">تسجيل الدخول</button>
+    <button class="btn-blue" id="topRegBtn" onclick="gp('reg')">إنشاء حساب</button>
+    <div id="topUserPill" style="display:none;align-items:center;gap:8px;padding:6px 14px;background:var(--light);border-radius:20px;border:1.5px solid var(--bdr)">
+      <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--teal));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.8rem" id="topUserAv">م</div>
+      <span style="font-size:.82rem;font-weight:700;max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" id="topUserName"></span>
+    </div>
+    <button id="topLogoutBtn" class="btn-ol" style="display:none;border-color:var(--red);color:var(--red)" onclick="doLogout()">خروج</button>
+  </div>
   <button class="hamburger-btn" onclick="openDrawer()" aria-label="القائمة">
     <span></span><span></span><span></span>
   </button>
@@ -1603,9 +1624,9 @@ async function submitRating() {
   <div class="dlayout">
     <div class="sidebar">
       <div class="sid-u">
-        <div class="sid-av" id="dashSidAv">م</div>
+        <div class="sid-av">م</div>
         <div class="sid-name" id="dashSidName">اسم البائع</div>
-        <div class="sid-role" id="dashSidRole">بائع</div>
+        <div class="sid-role">بائع جديد</div>
       </div>
       <div class="sid-nav">
         <div class="sid-lbl">القائمة</div>
@@ -2065,41 +2086,7 @@ async function submitRating() {
             <div style="position:absolute;top:0;left:0;right:0;height:50%;background:rgba(255,255,255,0.12);border-radius:9px 9px 50% 50%;pointer-events:none;"></div>
             <svg width="20" height="20" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" rx="20" fill="url(#slg2)"/><text x="50" y="73" text-anchor="middle" font-family="Cairo,sans-serif" font-weight="900" font-size="74" fill="white">S</text><defs><linearGradient id="slg2" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse"><stop stop-color="#0ea5e9"/><stop offset="1" stop-color="#0f766e"/></linearGradient></defs></svg>
           </div>
-          <!-- ══ Q&A ══ -->
-          <div style="margin-top:28px">
-            <div style="font-size:1rem;font-weight:900;margin-bottom:14px;display:flex;align-items:center;gap:8px">❓ أسئلة وأجوبة <span id="qaCount" style="font-size:.78rem;color:var(--muted);font-weight:600"></span></div>
-            <div id="qaList" style="margin-bottom:14px"></div>
-            <div style="background:var(--card);border:1.5px solid var(--bdr);border-radius:12px;padding:14px">
-              <div style="font-size:.83rem;font-weight:700;margin-bottom:8px">اطرح سؤالاً</div>
-              <textarea id="qaInput" placeholder="اسأل البائع عن هذا المنتج..." style="width:100%;padding:10px 12px;background:var(--bg);border:1.5px solid var(--bdr);border-radius:10px;color:var(--text);font-family:inherit;font-size:.83rem;resize:vertical;min-height:70px;margin-bottom:8px;box-sizing:border-box"></textarea>
-              <button onclick="submitQuestion()" style="padding:9px 20px;background:var(--blue);color:#fff;border:none;border-radius:10px;font-family:inherit;font-weight:700;font-size:.83rem;cursor:pointer">✉️ إرسال السؤال</button>
-            </div>
-          </div>
 
-          <!-- ══ REVIEWS ══ -->
-          <div style="margin-top:28px">
-            <div style="font-size:1rem;font-weight:900;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between">
-              <span>⭐ التقييمات <span id="reviewCount" style="font-size:.78rem;color:var(--muted);font-weight:600"></span></span>
-              <div id="reviewAvg" style="font-size:.85rem;font-weight:800;color:var(--gold)"></div>
-            </div>
-            <div id="reviewList" style="margin-bottom:14px"></div>
-            <div style="background:var(--card);border:1.5px solid var(--bdr);border-radius:12px;padding:14px" id="reviewForm">
-              <div style="font-size:.83rem;font-weight:700;margin-bottom:10px">أضف تقييمك</div>
-              <div style="display:flex;gap:6px;margin-bottom:10px" id="starPicker">
-                <span onclick="setReviewStar(1)" data-s="1" style="font-size:1.6rem;cursor:pointer;opacity:.4">★</span>
-                <span onclick="setReviewStar(2)" data-s="2" style="font-size:1.6rem;cursor:pointer;opacity:.4">★</span>
-                <span onclick="setReviewStar(3)" data-s="3" style="font-size:1.6rem;cursor:pointer;opacity:.4">★</span>
-                <span onclick="setReviewStar(4)" data-s="4" style="font-size:1.6rem;cursor:pointer;opacity:.4">★</span>
-                <span onclick="setReviewStar(5)" data-s="5" style="font-size:1.6rem;cursor:pointer;opacity:.4">★</span>
-              </div>
-              <textarea id="reviewComment" placeholder="شارك تجربتك مع هذا المنتج..." style="width:100%;padding:10px 12px;background:var(--bg);border:1.5px solid var(--bdr);border-radius:10px;color:var(--text);font-family:inherit;font-size:.83rem;resize:vertical;min-height:70px;margin-bottom:8px;box-sizing:border-box"></textarea>
-              <div style="margin-bottom:10px">
-                <div style="font-size:.78rem;color:var(--muted);margin-bottom:6px">📷 أضف صورة (اختياري)</div>
-                <input type="file" id="reviewImgInput" accept="image/*" multiple style="font-size:.78rem">
-              </div>
-              <button onclick="submitReview()" style="padding:9px 20px;background:var(--gold);color:#fff;border:none;border-radius:10px;font-family:inherit;font-weight:700;font-size:.83rem;cursor:pointer">⭐ نشر التقييم</button>
-            </div>
-          </div>
           <span style="font-size:1.2rem;font-weight:900;color:var(--blue)">souq<em style="color:var(--teal);font-style:normal">-kom</em></span>
         </div>
         <p style="font-size:.82rem;color:var(--muted2);line-height:1.7;max-width:260px">منصة تجارية إلكترونية تجمع البائعين والمشترين في مكان واحد آمن وموثوق.</p>
@@ -2251,7 +2238,7 @@ async function submitRating() {
       </label>
       <label class="pay-method" onclick="selPayMethod(this,'cashplus')">
         <input type="radio" name="payMethod" value="cashplus">
-        <div class="pay-method-icon" style="background:rgba(255,140,0,.1)">📱</div>
+        <div class="pay-method-icon" style="background:rgba(160,32,240,.1)">📱</div>
         <div class="pay-method-info"><div class="pay-method-name">CashPlus</div><div class="pay-method-sub">محفظة رقمية مغربية</div></div>
       </label>
       <label class="pay-method" onclick="selPayMethod(this,'cash')">
@@ -2392,7 +2379,7 @@ var _loginAttempts=0,_loginLockUntil=0;
 function checkLoginRateLimit(){var now=Date.now();if(now<_loginLockUntil){var s=Math.ceil((_loginLockUntil-now)/1000);return'محاولات كثيرة — انتظر '+s+' ثانية';}; _loginAttempts++;if(_loginAttempts>=5){_loginLockUntil=now+60000;_loginAttempts=0;return'تم تجاوز المحاولات المسموحة — انتظر دقيقة';}return null;}
 function resetLoginAttempts(){_loginAttempts=0;_loginLockUntil=0;}
 function safeAuthError(msg){if(!msg)return'حدث خطأ — حاول مجدداً';var m=String(msg).toLowerCase();if(m.includes('invalid')||m.includes('wrong')||m.includes('credential'))return'البريد أو كلمة المرور غير صحيحة';if(m.includes('already')||m.includes('exists'))return'هذا البريد مسجل مسبقاً';if(m.includes('weak')||m.includes('short'))return'كلمة المرور ضعيفة — استخدم 8 أحرف على الأقل';if(m.includes('email'))return'تحقق من صيغة البريد الإلكتروني';return'حدث خطأ — حاول مجدداً';}
-function validatePassword(p){if(p.length<8)return'كلمة المرور يجب أن تكون 8 أحرف على الأقل';if(!/[0-9]/.test(p))return'يجب أن تحتوي كلمة المرور على رقم واحد على الأقل';if(!/[A-Z]/.test(p)&&!/[a-z]/.test(p))return'يجب أن تحتوي كلمة المرور على حرف واحد على الأقل';if(!/[^A-Za-z0-9]/.test(p))return'يجب أن تحتوي كلمة المرور على رمز خاص واحد على الأقل (!@#$...)';return null;}
+function validatePassword(p){if(p.length<8)return'كلمة المرور يجب أن تكون 8 أحرف على الأقل';if(!/[0-9]/.test(p))return'يجب أن تحتوي على رقم واحد على الأقل';if(!/[A-Z]/.test(p)&&!/[a-z]/.test(p))return'يجب أن تحتوي على حرف واحد على الأقل';if(!/[^A-Za-z0-9]/.test(p))return'يجب أن تحتوي على رمز خاص (!@#$...)';return null;}
 function validateFileSize(file,maxMB){if(!file)return null;if(file.size>maxMB*1024*1024)return'حجم الملف يتجاوز '+maxMB+'MB';return null;}
 
 // ══ SUPABASE HELPER ══
@@ -2457,6 +2444,14 @@ async function restoreSession() {
       localStorage.setItem('sb_session', JSON.stringify(data));
       await loadProfile();
       updateTopbarUI();
+      // توجيه الأدمن لصفحته تلقائياً
+      if(currentProfile && currentProfile.role === 'admin'){
+        window.location.href = 'admin.html'; return;
+      }
+      // توجيه البائع لصفحته تلقائياً
+      if(currentProfile && currentProfile.role === 'seller'){
+        // البائع يبقى في index إلا إذا فتح seller.html
+      }
     } else {
       localStorage.removeItem('sb_session');
     }
@@ -2465,13 +2460,32 @@ async function restoreSession() {
 
 async function loadProfile() {
   if (!currentUser) return;
-  const r = await supaFetch('/rest/v1/profiles?id=eq.' + currentUser.id + '&select=*');
-  if (r.ok && r.data.length > 0) currentProfile = r.data[0];
+  try {
+    const r = await supaFetch('/rest/v1/profiles?id=eq.' + currentUser.id + '&select=*');
+    if (r.ok && Array.isArray(r.data) && r.data.length > 0) {
+      currentProfile = r.data[0];
+    } else if (r.ok && r.data && !Array.isArray(r.data) && r.data.id) {
+      currentProfile = r.data;
+    }
+  } catch(e) { currentProfile = null; }
 }
 
 function updateTopbarUI() {
-  // تحديث Bottom Nav
   try {
+    // تحديث Topbar (Desktop)
+    var topLogin = document.getElementById('topLoginBtn');
+    var topReg   = document.getElementById('topRegBtn');
+    var topPill  = document.getElementById('topUserPill');
+    var topUName = document.getElementById('topUserName');
+    var topUAv   = document.getElementById('topUserAv');
+    var topOut   = document.getElementById('topLogoutBtn');
+    if(topLogin) topLogin.style.display = currentUser ? 'none' : '';
+    if(topReg)   topReg.style.display   = currentUser ? 'none' : '';
+    if(topPill)  topPill.style.display   = currentUser ? 'flex' : 'none';
+    if(topOut)   topOut.style.display    = currentUser ? '' : 'none';
+    if(topUName && currentUser) topUName.textContent = currentProfile?.full_name?.split(' ')[0] || currentUser.email?.split('@')[0] || 'حسابي';
+    if(topUAv && currentUser) topUAv.textContent = (currentProfile?.full_name || 'م').charAt(0);
+    // تحديث Bottom Nav
     var navLogin = document.getElementById('navLoginBtn');
     var navUser  = document.getElementById('navUserBtn');
     var navUName = document.getElementById('navUserName');
@@ -2832,13 +2846,7 @@ async function openProduct(id) {
   }
 
   gp('product');
-  // Load Q&A + Reviews
-  if (currentProduct) {
-    loadQA(currentProduct.id);
-    loadReviews(currentProduct.id);
-    currentReviewStar = 0;
-    document.querySelectorAll('#starPicker span').forEach(function(s){s.style.opacity='.4';s.style.color='';});
-  }
+  // Q&A and Reviews removed
   // Load similar products
   if (currentProduct && currentProduct.category) {
     loadSimilarProducts(currentProduct.category, currentProduct.id).then(function(similar) {
@@ -3086,15 +3094,6 @@ async function doAddProduct() {
 // ══ SELLER DASHBOARD — LOAD ══
 async function loadSellerDash() {
   if (!currentUser) return;
-  // تحديث sidebar البائع بالبيانات الحقيقية
-  var _sn = document.getElementById('dashSidName');
-  var _sa = document.getElementById('dashSidAv');
-  var _sr = document.getElementById('dashSidRole');
-  if(currentProfile){
-    if(_sn) _sn.textContent = currentProfile.store_name || currentProfile.full_name || 'بائع';
-    if(_sa) _sa.textContent = (currentProfile.full_name || 'م').charAt(0);
-    if(_sr) _sr.textContent = currentProfile.approved === false ? 'قيد المراجعة' : 'بائع نشط';
-  }
   const [prods, orders] = await Promise.all([
     supaFetch('/rest/v1/products?seller_id=eq.' + currentUser.id + '&select=*'),
     supaFetch('/rest/v1/orders?seller_id=eq.' + currentUser.id + '&select=*')
@@ -3185,18 +3184,18 @@ function updateCartUI() {
   }
   cartList.innerHTML = cartItems.map(item => `
     <div class="c-item">
-      <div class="c-thumb" style="${item.image?'padding:0;overflow:hidden':''}">${item.image?`<img src="${esc(item.image)}" style="width:100%;height:100%;object-fit:cover">`:esc(item.name).charAt(0)}</div>
+      <div class="c-thumb" style="${item.image?'padding:0;overflow:hidden':''}">${item.image?`<img src="${item.image}" style="width:100%;height:100%;object-fit:cover">`:item.name.charAt(0)}</div>
       <div class="c-info">
-        <div class="cn">${esc(item.name)}</div>
-        <div class="cp">${Number(item.price)||0} درهم</div>
+        <div class="cn">${item.name}</div>
+        <div class="cp">${item.price} درهم</div>
         <div class="cqty">
-          <button class="qb" onclick="changeQty('${esc(item.id)}',-1)">−</button>
-          <span class="qn">${Number(item.qty)||1}</span>
-          <button class="qb" onclick="changeQty('${esc(item.id)}',1)">+</button>
-          <button class="cdel" onclick="removeFromCart('${esc(item.id)}')">حذف</button>
+          <button class="qb" onclick="changeQty('${item.id}',-1)">−</button>
+          <span class="qn">${item.qty}</span>
+          <button class="qb" onclick="changeQty('${item.id}',1)">+</button>
+          <button class="cdel" onclick="removeFromCart('${item.id}')">حذف</button>
         </div>
       </div>
-      <div style="font-weight:800;color:var(--gold)">${(Number(item.price)*Number(item.qty)).toFixed(2)} ر</div>
+      <div style="font-weight:800;color:var(--gold)">${(item.price * item.qty).toFixed(2)} ر</div>
     </div>
   `).join('');
   const subtotal = cartItems.reduce((s, i) => s + i.price * i.qty, 0);
@@ -3234,9 +3233,9 @@ async function doCheckout() {
     var pci = document.getElementById('payCartItems');
     if(pci) pci.innerHTML = cartItems.map(i=>`
       <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--bdr)">
-        ${i.image?`<img src="${esc(i.image)}" style="width:38px;height:38px;border-radius:8px;object-fit:cover">`:'<div style="width:38px;height:38px;border-radius:8px;background:var(--light);display:flex;align-items:center;justify-content:center;font-size:1rem">📦</div>'}
-        <div style="flex:1;min-width:0"><div style="font-size:.82rem;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(i.name)}</div><div style="font-size:.72rem;color:var(--muted2)">${Number(i.qty)||1} × ${Number(i.price)||0} ر</div></div>
-        <div style="font-weight:800;color:var(--blue);font-size:.83rem">${(Number(i.price)*Number(i.qty)).toFixed(2)} ر</div>
+        ${i.image?`<img src="${i.image}" style="width:38px;height:38px;border-radius:8px;object-fit:cover">`:'<div style="width:38px;height:38px;border-radius:8px;background:var(--light);display:flex;align-items:center;justify-content:center;font-size:1rem">📦</div>'}
+        <div style="flex:1;min-width:0"><div style="font-size:.82rem;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${i.name}</div><div style="font-size:.72rem;color:var(--muted2)">${i.qty} × ${i.price} ر</div></div>
+        <div style="font-weight:800;color:var(--blue);font-size:.83rem">${(i.price*i.qty).toFixed(2)} ر</div>
       </div>`).join('');
     pm.style.display='flex';
   }
@@ -3377,10 +3376,10 @@ async function loadPendingSellers() {
   if (list.length === 0) { el.innerHTML = '<div style="padding:20px;text-align:center;color:var(--muted2);font-size:.83rem">لا توجد طلبات معلقة</div>'; return; }
   el.innerHTML = list.map(s => `
     <div style="display:flex;align-items:center;justify-content:space-between;padding:10px;border-bottom:1px solid var(--bdr)">
-      <div><div style="font-weight:700;font-size:.86rem;color:var(--text)">${esc(s.store_name)}</div><div style="font-size:.72rem;color:var(--muted2)">${esc(s.email)}</div></div>
+      <div><div style="font-weight:700;font-size:.86rem;color:var(--text)">${s.store_name}</div><div style="font-size:.72rem;color:var(--muted2)">${s.email}</div></div>
       <div style="display:flex;gap:6px">
-        <button class="ab" onclick="approveSeller('${esc(s.id)}')">قبول</button>
-        <button class="rb" onclick="rejectSeller('${esc(s.id)}')">رفض</button>
+        <button class="ab" onclick="approveSeller('${s.id}')">قبول</button>
+        <button class="rb" onclick="rejectSeller('${s.id}')">رفض</button>
       </div>
     </div>
   `).join('');
@@ -3423,11 +3422,11 @@ async function loadAdminProducts() {
   el.innerHTML = `<table class="tbl"><thead><tr><th>المنتج</th><th>البائع</th><th>السعر</th><th>الحالة</th><th>إجراءات</th></tr></thead><tbody>` +
   list.map(p => {
     const [label, cls] = statusMap[p.status] || ['—', 's-off'];
-    return `<tr><td>${esc(p.name)}</td><td>${esc(p.profiles?.store_name || '—')}</td><td>${Number(p.price)||0} ر</td>
+    return `<tr><td>${p.name}</td><td>${p.profiles?.store_name || '—'}</td><td>${p.price} ر</td>
       <td><span class="st ${cls}">${label}</span></td>
       <td><div class="tacts">
-        ${p.status === 'pending' ? `<button class="ta ta-e" onclick="approveProduct('${esc(p.id)}')">قبول</button>` : ''}
-        <button class="ta ta-d" onclick="rejectProduct('${esc(p.id)}')">رفض</button>
+        ${p.status === 'pending' ? `<button class="ta ta-e" onclick="approveProduct('${p.id}')">قبول</button>` : ''}
+        <button class="ta ta-d" onclick="rejectProduct('${p.id}')">رفض</button>
       </div></td></tr>`;
   }).join('') + '</tbody></table>';
 }
@@ -3478,13 +3477,15 @@ async function doDrawerLogin(){
   var data = await authFetch('/token?grant_type=password',{email,password:pass});
   if(!data.access_token){ errEl.textContent='البريد أو كلمة المرور غير صحيحة'; errEl.style.display='block'; return; }
   currentSession=data; currentUser=data.user;
-  localStorage.setItem('session', JSON.stringify(data));
-  var r=await supaFetch('/rest/v1/profiles?id=eq.'+currentUser.id+'&select=*');
-  if(r.ok&&r.data[0]) currentProfile=r.data[0];
-  updateAuthUI();
+  localStorage.setItem('sb_session', JSON.stringify(data));
+  await loadProfile();
+  updateTopbarUI(); updateAuthUI();
   document.getElementById('drawerLoginForm').style.display='none';
   closeDrawer();
   toast('مرحباً '+(currentProfile?.full_name||email)+' ✓','ok');
+  // توجيه الأدمن والبائع
+  if(currentProfile?.role==='admin'){ window.location.href='admin.html'; return; }
+  if(currentProfile?.role==='seller'){ window.location.href='seller.html'; return; }
 }
 
 async function doForgotPassword(){
@@ -4331,18 +4332,7 @@ async function submitReview() {
 
 async function uploadReviewImage(file) {
   try {
-    // التحقق من نوع الملف
-    var allowedTypes = ['image/jpeg','image/jpg','image/png','image/webp','image/gif'];
-    if(!allowedTypes.includes(file.type)){
-      toast('نوع الملف غير مدعوم. استخدم JPG, PNG, أو WebP','err');
-      return null;
-    }
-    // التحقق من الحجم (أقصى 5 ميغا)
-    if(file.size > 5 * 1024 * 1024){
-      toast('حجم الصورة يتجاوز 5 ميغابايت','err');
-      return null;
-    }
-    var ext = {'image/jpeg':'jpg','image/jpg':'jpg','image/png':'png','image/webp':'webp','image/gif':'gif'}[file.type] || 'jpg';
+    var ext = file.name.split('.').pop();
     var name = 'review_' + Date.now() + '_' + Math.random().toString(36).slice(2) + '.' + ext;
     var r = await fetch(SUPA_URL + '/storage/v1/object/product-images/' + name, {
       method: 'POST',
