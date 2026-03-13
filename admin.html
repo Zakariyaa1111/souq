@@ -360,11 +360,6 @@ async function adminForgotPass(){
   } catch(e){ alert('خطأ في الاتصال'); }
 }
 
-// ══ RATE LIMITING ══
-var _admAttempts=0,_admLockUntil=0;
-function checkAdminRateLimit(){var now=Date.now();if(now<_admLockUntil){var s=Math.ceil((_admLockUntil-now)/1000);return'محاولات كثيرة — انتظر '+s+' ثانية';} _admAttempts++;if(_admAttempts>=5){_admLockUntil=now+120000;_admAttempts=0;return'تم تجاوز المحاولات — انتظر دقيقتين';}return null;}
-function resetAdminAttempts(){_admAttempts=0;_admLockUntil=0;}
-
 async function doAdminLogin(){
   var email = document.getElementById('gate_email').value.trim();
   var pass  = document.getElementById('gate_pass').value;
@@ -375,9 +370,6 @@ async function doAdminLogin(){
     errEl.textContent='يرجى ملء جميع الحقول';
     errEl.style.display='block'; return;
   }
-  // Rate limiting
-  var rl=checkAdminRateLimit();
-  if(rl){ errEl.textContent=rl; errEl.style.display='block'; return; }
   btn.textContent='جاري التحقق...'; btn.disabled=true;
   try {
     var data = await authFetch('/token?grant_type=password',{email, password:pass});
@@ -414,7 +406,6 @@ async function doAdminLogin(){
       errEl.style.display='block'; currentSession=null; currentUser=null; currentProfile=null;
       btn.textContent='دخول للوحة الإدارة'; btn.disabled=false; return;
     }
-    resetAdminAttempts();
     localStorage.setItem('ak_sess', JSON.stringify(data));
     document.getElementById('authGate').style.display='none';
     initAdmin();
@@ -533,8 +524,8 @@ async function loadPendingQuick(){
           ${s.city?'<div style="font-size:.78rem;color:var(--muted)">📍 '+esc(s.city)+'</div>':''}
         </div>
         <div class="acard-btns">
-          <button class="ab ab-g" onclick="approveSeller('${esc(s.id)}')">✅ قبول</button>
-          <button class="ab ab-r" onclick="rejectSeller('${esc(s.id)}')">❌ رفض</button>
+          <button class="ab ab-g" onclick="approveSeller('${s.id}')">✅ قبول</button>
+          <button class="ab ab-r" onclick="rejectSeller('${s.id}')">❌ رفض</button>
         </div>
       </div>
     </div>`; }).join('');
@@ -559,7 +550,7 @@ async function loadUsers(){
           ${u.role==='seller'&&!u.approved?'<span class="badge badge-y" style="margin-right:4px">معلق</span>':''}
         </td>
         <td style="font-size:.78rem;color:var(--muted)">${new Date(u.created_at).toLocaleDateString('ar-MA')}</td>
-        <td><button class="ab ab-r" onclick="deleteUser('${esc(u.id)}')">حذف</button></td>
+        <td><button class="ab ab-r" onclick="deleteUser('${u.id}')">حذف</button></td>
       </tr>`; }).join('')
     + '</tbody></table></div>';
 }
@@ -582,9 +573,9 @@ async function loadPendingSellers(){
           ${s.store_desc?'<p style="font-size:.82rem;color:var(--muted);margin-top:6px">'+esc(s.store_desc)+'</p>':''}
         </div>
         <div class="acard-btns">
-          <button class="ab ab-g" onclick="approveSeller('${esc(s.id)}')">✅ قبول</button>
-          <button class="ab ab-r" onclick="rejectSeller('${esc(s.id)}')">❌ رفض</button>
-          <button class="ab ab-y" onclick="setProductLimit('${esc(s.id)}')">🔢 حد المنتجات</button>
+          <button class="ab ab-g" onclick="approveSeller('${s.id}')">✅ قبول</button>
+          <button class="ab ab-r" onclick="rejectSeller('${s.id}')">❌ رفض</button>
+          <button class="ab ab-y" onclick="setProductLimit('${s.id}')">🔢 حد المنتجات</button>
         </div>
       </div>
     </div>`; }).join('');
@@ -606,12 +597,12 @@ async function loadAdminProducts(){
     var sl = p.status==='active'?'نشط':p.status==='pending'?'معلق':'متوقف';
     var store = p.profiles ? (p.profiles.store_name||p.profiles.full_name||'—') : '—';
     var btns = '';
-    if(p.status !== 'active') btns += '<button class="ab ab-g" onclick="approveProduct(\''+esc(p.id)+'\')">✅ نشر</button>';
-    if(p.status === 'active')  btns += '<button class="ab ab-y" onclick="rejectProduct(\''+esc(p.id)+'\')">⏸ إيقاف</button>';
+    if(p.status !== 'active') btns += '<button class="ab ab-g" onclick="approveProduct(\''+p.id+'\')">✅ نشر</button>';
+    if(p.status === 'active')  btns += '<button class="ab ab-y" onclick="rejectProduct(\''+p.id+'\')">⏸ إيقاف</button>';
     btns += p.is_featured
-      ? '<button class="ab" style="background:var(--gold);color:#fff" onclick="toggleFeatured(\''+esc(p.id)+'\',false)">⚡ إيقاف مميز</button>'
-      : '<button class="ab" style="background:var(--light);color:var(--text)" onclick="toggleFeatured(\''+esc(p.id)+'\',true)">⚡ مميز</button>';
-    btns += '<button class="ab ab-r" onclick="deleteProduct(\''+esc(p.id)+'\')">🗑 حذف</button>';
+      ? '<button class="ab" style="background:var(--gold);color:#fff" onclick="toggleFeatured(\''+p.id+'\',false)">⚡ إيقاف مميز</button>'
+      : '<button class="ab" style="background:var(--light);color:var(--text)" onclick="toggleFeatured(\''+p.id+'\',true)">⚡ مميز</button>';
+    btns += '<button class="ab ab-r" onclick="deleteProduct(\''+p.id+'\')">🗑 حذف</button>';
     html += '<div class="acard"><div class="acard-header"><div>'
       +'<div class="acard-title">'+esc(p.name||'—')+'</div>'
       +'<div class="acard-sub">🏪 '+esc(store)+' · '+esc(p.category||'—')+' · '+Number(p.price||0).toLocaleString('ar-MA')+' درهم</div>'
@@ -684,9 +675,9 @@ async function loadAdminAds(){
     var statusBadge = a.status==='active' ? 'badge-g' : a.status==='pending' ? 'badge-y' : 'badge-r';
     var statusLabel = a.status==='active' ? 'نشط' : a.status==='pending' ? 'معلق' : 'متوقف';
     var btns = '';
-    if(a.status !== 'active') btns += '<button class="ab ab-g" onclick="approveAd(\''+esc(a.id)+'\')">✅ نشر</button>';
-    if(a.status === 'active') btns += '<button class="ab ab-y" onclick="pauseAd(\''+esc(a.id)+'\')">⏸ إيقاف</button>';
-    btns += '<button class="ab ab-r" onclick="deleteAd(\''+esc(a.id)+'\')">🗑 حذف</button>';
+    if(a.status !== 'active') btns += '<button class="ab ab-g" onclick="approveAd(\''+a.id+'\')">✅ نشر</button>';
+    if(a.status === 'active') btns += '<button class="ab ab-y" onclick="pauseAd(\''+a.id+'\')">⏸ إيقاف</button>';
+    btns += '<button class="ab ab-r" onclick="deleteAd(\''+a.id+'\')">🗑 حذف</button>';
     var linkHtml = a.link ? '<div style="font-size:.75rem;color:var(--blue);margin-top:3px">🔗 '+esc(a.link)+'</div>' : '';
     var imgHtml = (a.images && Array.isArray(a.images) && a.images[0])
       ? '<img src="'+esc(a.images[0])+'" style="width:60px;height:60px;object-fit:cover;border-radius:8px;margin-top:6px" onerror="this.style.display=\'none\'">'
@@ -721,7 +712,7 @@ async function loadAdminAdvertisers(){
     +'<th>الاسم</th><th>البريد</th><th>التاريخ</th><th>إجراء</th>'
     +'</tr></thead><tbody>';
   list.forEach(function(a){
-    var btns = '<button class="ab ab-r" onclick="deleteUser(\''+esc(a.id)+'\')">حذف</button>';
+    var btns = '<button class="ab ab-r" onclick="deleteUser(\''+a.id+'\')">حذف</button>';
     html += '<tr>'
       +'<td><strong>'+esc(a.full_name||a.store_name||'—')+'</strong></td>'
       +'<td style="font-size:.78rem;color:var(--muted)">'+esc(a.email||'—')+'</td>'
@@ -751,7 +742,7 @@ async function loadAdminReports(){
     var detailsHtml = rep.details ? '<p style="font-size:.8rem;color:var(--muted);margin-top:6px">'+esc(rep.details)+'</p>' : '';
     html += '<div class="acard"><div class="acard-header"><div>'
       +'<div class="acard-title">🚩 '+(RL[rep.reason]||esc(rep.reason)||'—')+'</div>'
-      +'<div class="acard-sub">منتج: '+esc((rep.product_id||'—').slice(0,8))+' · منذ '+timeSince(rep.created_at)+'</div>'
+      +'<div class="acard-sub">منتج: '+(rep.product_id||'—').slice(0,8)+' · منذ '+timeSince(rep.created_at)+'</div>'
       +detailsHtml
       +'</div><div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px">'
       +'<span class="badge '+sc+'">'+sl+'</span>'
@@ -874,16 +865,10 @@ async function deleteReportedProduct(productId, reportId){
 
 // ══ STARTUP ══
 (function(){
-  // حماية بكلمة سر
-  if(sessionStorage.getItem('adm_ok') !== '1'){
-    var p = prompt('🔐 أدخل كلمة مرور الإدارة:');
-    if(!p){ location.href='index.html'; return; }
-    if(btoa(p) === 'TElWRSNJU0BIQVJEI0tFRVA='){ sessionStorage.setItem('adm_ok','1'); }
-    else{ alert('❌ كلمة السر خاطئة!'); location.href='index.html'; return; }
-  }
   // تطبيق الثيم المحفوظ
   var t = localStorage.getItem('adm_theme');
   if(t){ document.documentElement.dataset.theme=t; }
+  document.querySelector('.theme-btn').textContent = (t==='dark') ? '☀️' : '🌙';
   // محاولة استعادة الجلسة
   tryRestore().then(function(ok){
     if(ok){
@@ -920,8 +905,8 @@ async function loadCommissions(){
           <div style="display:flex;align-items:center;gap:8px">
             <input type="number" min="0" max="50" step="0.5" value="${s.commission_rate!=null?s.commission_rate:defComm}" 
               style="width:80px;padding:6px 8px;border:1.5px solid var(--bdr);border-radius:8px;font-family:inherit;font-size:.82rem;background:var(--bg);color:var(--text)" id="comm_${s.id}">
-            <button class="ab ab-g" onclick="saveStoreComm('${esc(s.id)}')">💾</button>
-            <button class="ab ab-y" onclick="resetComm('${esc(s.id)}',${defComm})">↺ افتراضي</button>
+            <button class="ab ab-g" onclick="saveStoreComm('${s.id}')">💾</button>
+            <button class="ab ab-y" onclick="resetComm('${s.id}',${defComm})">↺ افتراضي</button>
           </div>
         </td>
       </tr>`; }).join('')
@@ -977,8 +962,8 @@ async function loadVerifications(){
       +'</div>'
       +'<div class="acard-btns">'
       +(isVerif
-        ?'<button class="ab ab-y" onclick="setVerified(''+esc(s.id)+'',false)">🔕 إزالة التوثيق</button>'
-        :'<button class="ab ab-g" onclick="setVerified(''+esc(s.id)+'',true)">✅ توثيق</button>')
+        ?'<button class="ab ab-y" onclick="setVerified(\''+esc(s.id)+'\',false)">🔕 إزالة التوثيق</button>'
+        :'<button class="ab ab-g" onclick="setVerified(\''+esc(s.id)+'\',true)">✅ توثيق</button>')
       +'</div></div></div>';
   }).join('');
 }
@@ -1002,14 +987,14 @@ async function loadPremiumStores(){
     return '<div class="prem-card"><div style="display:flex;justify-content:space-between;align-items:center">'
       +'<div><div style="font-weight:800">'+esc(s.store_name||s.full_name||'—')+'</div>'
       +'<div style="font-size:.75rem;color:var(--muted)">مميز حتى: '+(s.premium_until?new Date(s.premium_until).toLocaleDateString('ar-MA'):'—')+'</div></div>'
-      +'<button class="ab ab-r" onclick="setPremium(''+esc(s.id)+'',false)">❌ إلغاء</button></div></div>';
+      +'<button class="ab ab-r" onclick="setPremium(\''+esc(s.id)+'\',false)">❌ إلغاء</button></div></div>';
   }).join('');
   html+='<div style="font-size:.82rem;font-weight:700;color:var(--muted);margin:14px 0 8px">بائعون عاديون ('+regList.length+')</div>';
   html+=regList.map(function(s){
     return '<div class="acard" style="margin-bottom:8px"><div class="acard-header"><div style="flex:1">'
       +'<div class="acard-title">'+esc(s.store_name||s.full_name||'—')+'</div>'
       +'<div class="acard-sub">'+esc(s.email||'—')+'</div></div>'
-      +'<button class="ab ab-g" onclick="setPremium(''+esc(s.id)+'',true)">⭐ تفعيل مميز</button>'
+      +'<button class="ab ab-g" onclick="setPremium(\''+esc(s.id)+'\',true)">⭐ تفعيل مميز</button>'
       +'</div></div>';
   }).join('');
   el.innerHTML=html;
