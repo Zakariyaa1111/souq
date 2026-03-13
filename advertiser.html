@@ -551,7 +551,19 @@ async function doLogin(){
   var btn=document.getElementById('lBtn');btn.textContent='جاري التحقق...';btn.disabled=true;
   var d=await AF('/token?grant_type=password',{email:email,password:pass});
   btn.textContent='تسجيل الدخول';btn.disabled=false;
-  if(d.access_token){resetAdvRate();sess=d;user=d.user;localStorage.setItem('adv_session',JSON.stringify(d));showDash();}
+  if(d.access_token){
+    sess=d;user=d.user;
+    // تحقق من الدور
+    var pr=await SF('/rest/v1/profiles?id=eq.'+user.id+'&select=role');
+    var role=(pr.ok&&Array.isArray(pr.data)&&pr.data[0])?pr.data[0].role:null;
+    if(role!=='advertiser'&&role!=='admin'){
+      sess=null;user=null;
+      return showErr('هذا الحساب ليس حساب معلن. سجّل كمعلن أولاً.');
+    }
+    resetAdvRate();
+    localStorage.setItem('adv_session',JSON.stringify(d));
+    showDash();
+  }
   else showErr(d.error_description||d.message||'بريد إلكتروني أو كلمة مرور غير صحيحة');
 }
 
@@ -761,7 +773,6 @@ function closeDrawer(){
   if(saved){
     try{
       var s=JSON.parse(saved);
-      // محاولة تجديد الجلسة
       var res=await fetch(SU+'/auth/v1/token?grant_type=refresh_token',{
         method:'POST',
         headers:{'apikey':SK,'Content-Type':'application/json'},
@@ -770,8 +781,15 @@ function closeDrawer(){
       var data=await res.json();
       if(data.access_token){
         sess=data;user=data.user;
-        localStorage.setItem('adv_session',JSON.stringify(data));
-        showDash();return;
+        // تحقق من الدور
+        var pr=await SF('/rest/v1/profiles?id=eq.'+user.id+'&select=role');
+        var role=(pr.ok&&Array.isArray(pr.data)&&pr.data[0])?pr.data[0].role:null;
+        if(role!=='advertiser'&&role!=='admin'){
+          localStorage.removeItem('adv_session');sess=null;user=null;
+        } else {
+          localStorage.setItem('adv_session',JSON.stringify(data));
+          showDash();return;
+        }
       } else { localStorage.removeItem('adv_session'); }
     }catch(e){localStorage.removeItem('adv_session');}
   }
