@@ -111,7 +111,7 @@ button{cursor:pointer;font-family:'Cairo',sans-serif}
 <body>
 
 <!-- GATE -->
-<div id="authGate">
+<div id="authGate" style="display:none">
   <div class="gate-box">
     <div style="text-align:center;margin-bottom:24px">
       <div style="font-size:2.2rem">🔐</div>
@@ -390,7 +390,7 @@ async function doAdminLogin(){
       var up = await supaFetch('/rest/v1/profiles', {
         method:'POST',
         headers:{'Prefer':'return=representation,resolution=merge-duplicates'},
-        body: JSON.stringify({id:currentUser.id, email:currentUser.email, role:'buyer', created_at:new Date().toISOString()})
+        body: JSON.stringify({id:currentUser.id, email:currentUser.email, role:'admin', created_at:new Date().toISOString()})
       });
       if(!up.ok||!up.data||!up.data[0]){
         errEl.textContent='تعذر إنشاء الملف الشخصي — تحقق من RLS على جدول profiles';
@@ -430,7 +430,7 @@ async function tryRestore(){
     currentSession=data; currentUser=data.user;
     localStorage.setItem('ak_sess',JSON.stringify(data));
     var r = await supaFetch('/rest/v1/profiles?id=eq.'+currentUser.id+'&select=*');
-    if(!r.ok||!r.data[0]||(r.data && r.data[0] && r.data[0].role)!=='admin'){ localStorage.removeItem('ak_sess'); return false; }
+    if(!r.ok||!r.data||!r.data[0]||r.data[0].role!=='admin'){ localStorage.removeItem('ak_sess'); return false; }
     currentProfile=r.data[0]; return true;
   } catch(e){ localStorage.removeItem('ak_sess'); return false; }
 }
@@ -864,24 +864,29 @@ async function deleteReportedProduct(productId, reportId){
 }
 
 // ══ STARTUP ══
-(function(){
-  // حماية بكلمة سر
+(async function(){
+  // تطبيق الثيم المحفوظ
+  var t = localStorage.getItem('adm_theme');
+  if(t){ document.documentElement.dataset.theme=t; }
+
+  // محاولة استعادة الجلسة أولاً (بدون prompt)
+  var restored = await tryRestore();
+  if(restored){
+    document.getElementById('authGate').style.display='none';
+    initAdmin();
+    return;
+  }
+
+  // حماية بكلمة سر فقط إذا لم تكن هناك جلسة
   if(sessionStorage.getItem('adm_ok') !== '1'){
     var p = prompt('🔐 أدخل كلمة مرور الإدارة:');
     if(!p){ location.href='index.html'; return; }
     if(btoa(p) === 'TElWRSNJU0BIQVJEI0tFRVA='){ sessionStorage.setItem('adm_ok','1'); }
     else{ alert('❌ كلمة السر خاطئة!'); location.href='index.html'; return; }
   }
-  // تطبيق الثيم المحفوظ
-  var t = localStorage.getItem('adm_theme');
-  if(t){ document.documentElement.dataset.theme=t; }
-  // محاولة استعادة الجلسة
-  tryRestore().then(function(ok){
-    if(ok){
-      document.getElementById('authGate').style.display='none';
-      initAdmin();
-    }
-  });
+
+  // إظهار نموذج الدخول
+  document.getElementById('authGate').style.display='flex';
 })();
 
 // ══ COMMISSIONS ══
