@@ -555,7 +555,21 @@ async function openAd(id){
 function closeMod(){document.getElementById('adModal').classList.remove('on');document.body.style.overflow='';}
 document.getElementById('adModal').addEventListener('click',function(e){if(e.target===this)closeMod();});
 function pI(d){if(!curAd?.images?.length)return;imgI=(imgI+d+curAd.images.length)%curAd.images.length;document.getElementById('mI').src=curAd.images[imgI];document.getElementById('mIN').textContent=imgI+1;}
-function ctWA(){var ph=curAd?.whatsapp||curAd?.phone;if(!ph)return;var n=String(ph).replace(/\D/g,'');if(n.startsWith('0'))n='212'+n.slice(1);window.open('https://wa.me/'+n+'?text='+encodeURIComponent('مرحباً، رأيت إعلانك على Souq-Kom: '+curAd.title),'_blank');}
+function ctwa() {
+    // 1. جلب رقم الهاتف من بيانات الإعلان الحالي
+    var ph = curAd?.whatsapp || curAd?.phone;
+    if (!ph) return;
+
+    // 2. تنظيف الرقم وإضافة مفتاح المغرب
+    var n = String(ph).replace(/\D/g, '');
+    if (n.startsWith('0')) n = '212' + n.slice(1);
+
+    // 3. صياغة نص الرسالة (اسم المنتج + الرابط)
+    var msg = `السلام عليكم، شفت الإعلان ديالك لمنتج "*${curAd.title}*" في موقع *سوق كوم* 🛍️ وبغيت نستفسر عليه.\n\nالرابط: ${window.location.origin}/ads.html?id=${curAd.id}`;
+
+    // 4. فتح الرابط
+    window.open('https://wa.me/' + n + '?text=' + encodeURIComponent(msg));
+}
 function shPh(){var ph=curAd?.phone||curAd?.whatsapp;if(!ph)return;toast('📞 '+ph,'info');}
 var selStar=0;
 function setStar(n){selStar=n;document.querySelectorAll('.sb').forEach((s,i)=>{s.style.color=i<n?'#FCD34D':'var(--bdr)';});}
