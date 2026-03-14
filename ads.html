@@ -555,33 +555,8 @@ async function openAd(id){
 function closeMod(){document.getElementById('adModal').classList.remove('on');document.body.style.overflow='';}
 document.getElementById('adModal').addEventListener('click',function(e){if(e.target===this)closeMod();});
 function pI(d){if(!curAd?.images?.length)return;imgI=(imgI+d+curAd.images.length)%curAd.images.length;document.getElementById('mI').src=curAd.images[imgI];document.getElementById('mIN').textContent=imgI+1;}
-function ctwa() {
-    // التأكد من أن بيانات الإعلان موجودة
-    if (!curAd) {
-        console.error("بيانات الإعلان غير موجودة!");
-        return;
-    }
-
-    // 1. جلب رقم الهاتف (تأكد من مسمى الحقل في Supabase)
-    var ph = curAd.whatsapp || curAd.phone;
-    if (!ph) {
-        toast('رقم الهاتف غير متوفر', 'info');
-        return;
-    }
-
-    // 2. تنظيف الرقم
-    var n = String(ph).replace(/\D/g, '');
-    if (n.startsWith('0')) n = '212' + n.slice(1);
-
-    // 3. صياغة الرسالة (استخدمنا || '' لتجنب توقف الكود إذا كان الحقل فارغاً)
-    var title = curAd.title || curAd.name || "هذا المنتج";
-    var id = curAd.id || "";
-    var msg = `السلام عليكم، شفت الإعلان ديالك لمنتج "*${title}*" في موقع *سوق كوم* 🛍️ وبغيت نستفسر عليه.\n\nالرابط: ${window.location.origin}/ads.html?id=${id}`;
-
-    // 4. فتح واتساب
-    window.open('https://wa.me/' + n + '?text=' + encodeURIComponent(msg));
-}
-  function shPh(){var ph=curAd?.phone||curAd?.whatsapp;if(!ph)return;toast('📞 '+ph,'info');}
+function ctWA(){if(!curAd?.contact_whatsapp)return;var n=curAd.contact_whatsapp.replace(/\D/g,'');if(n.startsWith('0'))n='212'+n.slice(1);window.open('https://wa.me/'+n+'?text='+encodeURIComponent(' مرحباً، رأيت إعلانك على Souq-Kom ,هل ما زال المنتج متوفرا ؟: '+curAd.title),'_blank');}
+function shPh(){var ph=curAd?.phone||curAd?.whatsapp;if(!ph)return;toast('📞 '+ph,'info');}
 var selStar=0;
 function setStar(n){selStar=n;document.querySelectorAll('.sb').forEach((s,i)=>{s.style.color=i<n?'#FCD34D':'var(--bdr)';});}
 async function submitR(advId,adId){
